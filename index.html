@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio e currículo de Douglas Vinicius Alves da Silva, estudante de Análise e Desenvolvimento de Sistemas na Estácio, focado em C, Python, Java e HTML/CSS.">
+  <meta name="keywords" content="Douglas Silva, Vivet, Analista de Sistemas, Desenvolvedor, C, Python, Java, HTML, CSS, Programação, Estágio, Estácio">
+  <meta name="author" content="Douglas Vinicius Alves da Silva">
+
+  <title>Douglas Vinicius Alves da Silva - Portfólio de Desenvolvimento</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* Reset básico e estilos globais */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #0e0e0e; /* Fundo bem escuro */
+      color: #f0f0f0; /* Texto claro */
+      text-align: center;
+      line-height: 1.6;
+      overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+      height: 100%; /* Garante que o body tenha altura total para o smooth scroll */
+    }
+    html {
+        height: 100%; /* Garante que o html tenha altura total para o smooth scroll */
+    }
+
+    /* Barra de Navegação */
+    .navbar {
+        background: #111; /* Fundo da navbar ligeiramente diferente do body */
+        padding: 15px 40px; /* Mais padding para os lados */
+        position: fixed; /* Fixa a navbar no topo */
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000; /* Garante que fique acima de outros elementos */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: space-between; /* Logo à esquerda, links à direita */
+        align-items: center;
+        box-sizing: border-box; /* Garante que padding não adicione largura */
+    }
+    .navbar .logo {
+        color: #fff; /* Cor do logo */
+        font-size: 24px;
+        font-weight: 700;
+        text-decoration: none;
+    }
+    .navbar .logo span { /* Para o efeito de destaque no '>' */
+        color: #00ff99; /* Verde Neon */
+    }
+    .navbar ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex; /* Links lado a lado */
+        flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+        justify-content: center;
+    }
+    .navbar li {
+        margin: 0 15px; /* Espaçamento entre os links */
+    }
+    .navbar a {
+        color: #00ccff; /* Azul Vibrante para links */
+        text-decoration: none;
+        font-weight: 500; /* Um pouco mais fino que o logo */
+        font-size: 17px;
+        transition: color 0.3s ease, border-bottom 0.3s ease;
+        padding-bottom: 5px;
+        border-bottom: 2px solid transparent; /* Para o efeito de hover */
+    }
+    .navbar a:hover {
+        color: #00ff99; /* Verde Neon no hover */
+        border-bottom: 2px solid #00ff99;
+    }
+
+    /* Seção Hero (Tela Principal) */
+    .hero-section {
+        height: 100vh; /* Altura total da viewport */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centraliza verticalmente */
+        align-items: center; /* Centraliza horizontalmente */
+        padding: 0 20px; /* Padding nas laterais */
+        box-sizing: border-box;
+        position: relative; /* Contexto para z-index e posicionamento */
+        z-index: 0; /* GARANTIA: Acima do canvas (-1) */
+        background-color: transparent; /* Fundo transparente para o canvas aparecer */
+        /* isolation: isolate; /* Mantido se for útil, mas não é a causa provável agora */
+    }
+    
+    /* Canvas para o fundo animado */
+    #dnaCanvas {
+        position: fixed; /* Fixa o canvas na janela do navegador */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Garante que fique atrás de TODO o conteúdo */
+        pointer-events: none; /* Permite que interações do mouse passem pelo canvas */
+    }
+
+    .hero-content-box {
+        border: 1px solid rgba(255, 255, 255, 0.3); /* Borda fina e semi-transparente */
+        padding: 40px;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.3); /* Fundo semi-transparente para a caixa */
+        max-width: 700px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra para destacar a caixa */
+        position: relative; /* Para garantir que o conteúdo fique acima do canvas */
+        z-index: 1; /* Acima do canvas */
+    }
+
+    .hero-content-box .welcome-text {
+        font-size: 24px;
+        color: #ccc;
+        margin-bottom: 10px;
+    }
+    .hero-content-box .name-gradient {
+        background-image: linear-gradient(to right, #00ccff, #8a2be2); /* Gradiente azul para roxo */
+        -webkit-background-clip: text; /* Clipa o gradiente ao texto (WebKit/Chrome/Safari) */
+        color: transparent; /* Torna o texto transparente para o gradiente aparecer */
+        font-size: 64px; /* Tamanho maior para o nome em gradiente */
+        font-weight: 700;
+        display: inline-block; /* Necessário para background-clip text funcionar bem */
+    }
+    .hero-content-box .developer-text {
+        font-size: 22px;
+        color: #ccc;
+        margin-top: 10px;
+    }
+    /* Estilo para o cursor de digitação */
+    .hero-content-box .developer-text::after {
+        content: '|'; /* Caractere do cursor */
+        display: inline-block;
+        animation: blink 0.7s infinite; /* Animação de piscar */
+        color: #00ff99; /* Cor do cursor */
+        margin-left: 5px; /* Espaço entre o texto e o cursor */
+    }
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+
+    .hero-buttons {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Espaço entre os botões */
+        flex-wrap: wrap; /* Quebra linha se a tela for pequena */
+    }
+    .hero-buttons .btn {
+        background-color: transparent; /* Fundo transparente */
+        border: 2px solid #00ccff; /* Borda azul */
+        color: #00ccff; /* Texto azul */
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Espaço entre texto e ícone */
+    }
+    .hero-buttons .btn:hover {
+        background-color: #00ccff; /* Fundo azul no hover */
+        color: #0e0e0e; /* Texto escuro no hover */
+        transform: translateY(-5px); /* Efeito de subida */
+        border-color: #00ccff; /* Mantém a borda azul no hover */
+    }
+    /* Estilo para o segundo botão (Currículo) */
+    .hero-buttons .btn.secondary {
+        border-color: #00ff99; /* Borda Verde Neon */
+        color: #00ff99; /* Texto Verde Neon */
+    }
+    .hero-buttons .btn.secondary:hover {
+        background-color: #00ff99; /* Fundo Verde Neon no hover */
+        border-color: #00ff99;
+    }
+
+
+    /* Seções gerais */
+    section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      /* Estilos para Reveal Animation (TEMPORARIAMENTE DESATIVADOS PARA DIAGNÓSTICO) */
+      /* Removendo opacity e transform iniciais para que todas as seções apareçam */
+      /* opacity: 0; */ 
+      /* transform: translateY(50px); */ 
+      /* transition: opacity 0.8s ease-out, transform 0.8s ease-out; */ 
+    }
+    /* Classe para seções visíveis (adicionada por JS) */
+    section.is-visible {
+        opacity: 1; /* Mostra a seção */
+        transform: translateY(0); /* Volta para a posição original */
+    }
+
+    /* Estilo para títulos com texto "ghosted" (fundo) */
+    .section-title-container {
+        position: relative;
+        margin-bottom: 60px; /* Espaço maior para o título e o ícone */
+        text-align: left; /* Alinha o contêiner à esquerda */
+        height: 60px; /* Altura para acomodar o texto fantasma */
+        display: flex;
+        align-items: flex-end; /* Alinha os itens na parte de baixo */
+        justify-content: center; /* Centraliza o título container para mobile */
+    }
+    .section-title-container .ghost-text {
+        position: absolute;
+        top: 0;
+        left: 50%; /* Centraliza horizontalmente */
+        transform: translateX(-50%); /* Ajusta para centralização exata */
+        font-size: 60px; /* Tamanho do texto fantasma */
+        color: rgba(255, 255, 255, 0.05); /* Cor muito transparente */
+        font-weight: 800; /* Extra bold */
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        white-space: nowrap; /* Impede que o texto quebre linha */
+        z-index: 1;
+    }
+    .section-title-container h2 {
+        position: relative; /* Para z-index funcionar */
+        z-index: 2; /* Garante que o h2 esteja acima do texto fantasma */
+        color: #fff;
+        font-size: 38px; /* Tamanho do título principal */
+        margin: 0; /* Remove margem padrão do h2 */
+        font-weight: 700;
+        display: flex; /* Para alinhar o ícone com o texto */
+        align-items: center;
+        text-align: left; /* Garante alinhamento esquerdo do h2 */
+    }
+    .section-title-container h2 span {
+        color: #00ccff; /* Azul Vibrante para o destaque nos títulos de seção */
+    }
+    .section-title-container h2 i {
+        color: #00ff99; /* Verde Neon para o ícone do título */
+        margin-right: 15px;
+        font-size: 30px;
+    }
+
+    .box {
+      background: #1a1a1a;
+      margin: 25px 0;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+      text-align: left;
+    }
+    .box p {
+      font-size: 17px;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+    .box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .box li {
+      margin-bottom: 12px;
+      font-size: 17px;
+      color: #f0f0f0;
+      line-height: 1.4;
+    }
+    .box li strong {
+        color: #fff;
+    }
+    .box li a {
+        color: #00ccff; /* Azul Vibrante para links internos */
+        font-weight: 600;
+        text-decoration: none;
+    }
+    .box li a:hover {
+        text-decoration: underline;
+        color: #00ff99; /* Verde Neon no hover */
+    }
+
+    /* Seção Sobre Mim - Novo Layout */
+    .about-content {
+        display: flex;
+        flex-direction: row; /* Conteúdo lado a lado por padrão */
+        align-items: flex-start; /* Alinha itens ao topo */
+        gap: 40px; /* Espaço entre a imagem e o texto */
+        background: #1a1a1a; /* Fundo da caixa da seção */
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+        text-align: left;
+    }
+    .about-image {
+        flex-shrink: 0; /* Impede que a imagem encolha */
+        width: 250px; /* Largura fixa para a imagem */
+        height: 250px; /* Altura fixa para a imagem */
+        border-radius: 10px; /* Bordas levemente arredondadas */
+        overflow: hidden; /* Garante que a imagem respeite o border-radius */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Sombra para a imagem */
+    }
+    .about-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Garante que a imagem preencha o contêiner sem distorcer */
+        display: block;
+    }
+    .about-text {
+        flex-grow: 1; /* Permite que o texto ocupe o espaço restante */
+    }
+    .about-text p {
+        font-size: 18px;
+        color: #ccc;
+        margin-bottom: 15px;
+    }
+
+    /* Seção de Habilidades - Grid */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Colunas de tamanho mais fixo */
+        gap: 25px; /* Espaçamento entre os itens */
+        margin-top: 30px;
+        justify-items: center; /* Centraliza itens na grid */
+    }
+    .skill-item {
+        background: #222; /* Fundo do item de habilidade */
+        width: 150px; /* Largura fixa para deixar quadrado */
+        height: 150px; /* Altura fixa para deixar quadrado */
+        padding: 10px; /* Padding interno */
+        border-radius: 15px; /* Cantos arredondados */
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        border: 2px solid transparent; /* Borda para hover */
+        position: relative; /* Para o texto de hover */
+        overflow: hidden; /* Garante que nada vaze */
+    }
+    .skill-item:hover {
+        transform: translateY(-5px);
+        background-color: #2a2a2a;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        border-color: #00ccff; /* Borda Azul Vibrante no hover */
+    }
+    .skill-item i {
+        font-size: 55px; /* Ícones maiores */
+        color: #00ff99; /* Verde Neon para os ícones */
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+    }
+    .skill-item:hover i {
+        color: #00ccff; /* Azul Vibrante no hover */
+    }
+    .skill-item p {
+        margin: 0;
+        font-size: 16px;
+        color: #f0f0f0;
+        text-align: center;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    .skill-item:hover p {
+        color: #00ff99; /* Verde Neon no hover */
+    }
+
+    /* Seção de Projetos - Cards */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+        justify-items: center; /* Centraliza cards na grid */
+    }
+    .project-card {
+        background: #222;
+        width: 300px; /* Largura fixa para os cards */
+        min-height: 450px; /* Altura mínima para padronizar */
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 2px solid transparent; /* Para o efeito de borda no hover */
+    }
+    .project-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        border-color: #00ccff; /* Borda Azul Vibrante no hover */
+    }
+    .project-card .project-image {
+        width: 100%;
+        height: 180px; /* Altura fixa para a imagem */
+        background-color: #333; /* Cor de fundo para placeholders */
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: #999;
+    }
+    .project-card .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .project-card .project-content {
+        padding: 20px;
+        flex-grow: 1; /* Ocupa o espaço restante */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .project-card h3 {
+        color: #00ccff; /* Azul Vibrante para títulos de projeto */
+        font-size: 24px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+    .project-card p {
+        font-size: 16px;
+        color: #ccc;
+        margin-bottom: 20px;
+        flex-grow: 1; /* Permite que a descrição ocupe espaço variável */
+    }
+    .project-card .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 15px;
+    }
+    .project-card .tech-tag {
+        background: #333;
+        color: #00ff99; /* Verde Neon para as tags de tecnologia */
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    .project-links {
+        margin-top: 20px; /* Mais espaço para os links */
+        padding-top: 15px;
+        border-top: 1px solid #333;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    .project-links a {
+        color: #00ccff; /* Azul Vibrante para links de projeto */
+        font-weight: 600;
+        text-decoration: none;
+    }
+    .project-links a:hover {
+        color: #00ff99; /* Verde Neon no hover */
+        text-decoration: underline;
+    }
+
+    /* Seção de Experiência e Serviços/Interesses - Caixas */
+    .experience-item, .service-item {
+        background: #222;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
+        text-align: left;
+    }
+    .experience-item h3, .service-item h3 {
+        color: #00ccff; /* Azul Vibrante */
+        font-size: 22px;
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+    .experience-item span, .service-item span {
+        font-size: 15px;
+        color: #999;
+        display: block;
+        margin-bottom: 10px;
+    }
+    .experience-item ul {
+        list-style: disc;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+    .experience-item li {
+        margin-bottom: 5px;
+        font-size: 16px;
+        color: #ccc;
+    }
+    .service-item i {
+        font-size: 35px;
+        color: #00ff99; /* Verde Neon para ícones de serviço */
+        margin-bottom: 10px;
+    }
+    .service-item p {
+        font-size: 16px;
+        color: #ccc;
+    }
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    /* Formulário de Contato */
+    .contact-form-container {
+        background: #1a1a1a; /* Fundo da caixa do formulário */
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+        max-width: 650px; /* Largura um pouco maior para o formulário */
+        margin: 40px auto;
+        text-align: left;
+        border: 1px solid rgba(255, 255, 255, 0.3); /* Borda similar à hero-content-box */
+    }
+    .contact-form label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 16px;
+        color: #f0f0f0;
+    }
+    .contact-form input, /* Aplica a inputs de texto, email, etc. */
+    .contact-form textarea {
+        width: calc(100% - 24px); /* 100% - padding e border */
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        background-color: #222;
+        color: #f0f0f0;
+        font-size: 16px;
+        box-sizing: border-box; /* Garante que padding e border não adicionem largura */
+    }
+    .contact-form textarea {
+        resize: vertical;
+        min-height: 120px; /* Altura mínima maior */
+    }
+    /* Estilos para placeholders dos inputs */
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+        color: #777;
+        opacity: 1; /* Para Firefox */
+    }
+    /* Remover setas de number input (se aplicável) e outras aparências */
+    .contact-form input::-webkit-outer-spin-button,
+    .contact-form input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    .contact-form input[type=number] {
+        -moz-appearance: textfield;
+    }
+    /* Estilo de seleção de texto dentro dos inputs */
+    .contact-form input::selection,
+    .contact-form textarea::selection {
+        background-color: #00ccff;
+        color: #0e0e0e;
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: flex-end; /* Alinha botões à direita no desktop */
+        gap: 15px; /* Espaçamento entre botões */
+        margin-top: 20px;
+    }
+    .contact-form input[type="submit"] { /* Botão de envio */
+        background-color: #00ccff; /* Azul Vibrante */
+        color: #0e0e0e;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .contact-form input[type="submit"]:hover {
+        background-color: #00ff99; /* Verde Neon no hover */
+        transform: translateY(-3px);
+    }
+    .contact-form button[type="reset"] { /* Botão de limpar */
+        background-color: #333; /* Cinza */
+        color: #f0f0f0;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .contact-form button[type="reset"]:hover {
+        background-color: #555;
+        transform: translateY(-3px);
+    }
+
+    .contact-info {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+    }
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #ccc;
+        font-size: 17px;
+    }
+    .contact-item i {
+        font-size: 24px;
+        color: #00ff99; /* Verde Neon para ícones de contato */
+    }
+
+    /* Rodapé */
+    footer {
+      margin-top: 60px;
+      padding: 40px 20px;
+      font-size: 15px;
+      color: #666;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .social-links {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .social-links a {
+        color: #f0f0f0;
+        font-size: 28px;
+        margin: 0 15px;
+        transition: color 0.3s ease, transform 0.2s ease;
+    }
+    .social-links a:hover {
+        color: #00ff99; /* Verde Neon no hover */
+        transform: translateY(-3px);
+    }
+    .footer-text {
+        color: #999; /* Cor do texto de copyright */
+        font-size: 14px;
+    }
+
+
+    /* Scroll-to-Top Button */
+    #scrollToTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 99;
+        background-color: #00ff99; /* Verde Neon para o botão */
+        color: #0e0e0e;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    #scrollToTopBtn:hover {
+        background-color: #00ccff; /* Azul Vibrante no hover */
+        transform: translateY(-3px);
+    }
+
+    /* Responsividade - Media Queries */
+    @media (max-width: 768px) {
+        /* Navbar */
+        .navbar {
+            padding: 15px 20px;
+            flex-direction: column; /* Empilha logo e menu */
+            gap: 10px;
+        }
+        .navbar ul {
+            margin-top: 10px;
+        }
+        .navbar .logo {
+            font-size: 20px;
+        }
+        .navbar .logo span { /* Adicionado para responsividade do logo */
+            color: #00ff99;
+        }
+        .navbar li {
+            margin: 0 8px;
+            font-size: 15px;
+        }
+
+        /* Hero Section */
+        .hero-content-box {
+            padding: 30px;
+        }
+        .hero-content-box .welcome-text {
+            font-size: 18px;
+        }
+        .hero-content-box .name-gradient {
+            font-size: 48px;
+        }
+        .hero-content-box .developer-text {
+            font-size: 18px;
+        }
+        .hero-buttons {
+            flex-direction: column; /* Empilha os botões */
+            gap: 15px;
+        }
+        .hero-buttons .btn {
+            width: 100%; /* Botões ocupam largura total */
+            max-width: 250px; /* Limita largura máxima para não esticar demais */
+        }
+
+        /* Seções Gerais e Títulos */
+        section {
+            padding: 40px 15px; /* Reduz padding lateral */
+        }
+        .section-title-container {
+            height: auto;
+            margin-bottom: 40px;
+            text-align: center; /* Centraliza o contêiner do título */
+            flex-direction: column; /* Empilha texto fantasma e título h2 */
+            align-items: center;
+        }
+        .section-title-container .ghost-text {
+            position: static; /* Remove posicionamento absoluto */
+            transform: none; /* Remove transformação */
+            font-size: 40px; /* Reduz tamanho */
+            margin-bottom: 10px; /* Adiciona espaço */
+            display: block; /* Garante que fique em sua própria linha */
+            white-space: normal; /* Permite que o texto quebre linha */
+        }
+        .section-title-container h2 {
+            font-size: 30px;
+            margin-bottom: 25px;
+            text-align: center; /* Centraliza o título em telas menores */
+            justify-content: center; /* Centraliza ícone e texto */
+        }
+        .section-title-container h2 i {
+            margin-right: 8px;
+            font-size: 24px;
+        }
+
+        /* Caixas de Conteúdo (Geral) */
+        .box {
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .box p, .box li {
+            font-size: 15px;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        /* Seção Sobre Mim */
+        .about-content {
+            flex-direction: column; /* Empilha imagem e texto */
+            align-items: center; /* Centraliza itens */
+            gap: 30px;
+            padding: 30px;
+        }
+        .about-image {
+            width: 200px; /* Reduz o tamanho da imagem */
+            height: 200px;
+        }
+        .about-text {
+            text-align: center; /* Centraliza o texto "Sobre Mim" */
+        }
+
+        /* Seção Habilidades */
+        .skills-grid {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Mais compacto */
+            gap: 15px;
+        }
+        .skill-item {
+            width: 120px;
+            height: 120px;
+            font-size: 14px;
+            padding: 8px; /* Ajusta padding para caber o conteúdo */
+        }
+        .skill-item i {
+            font-size: 40px;
+        }
+
+        /* Seção Projetos */
+        .projects-grid {
+            grid-template-columns: 1fr; /* Uma única coluna */
+        }
+        .project-card {
+            width: 100%; /* Ocupa largura total */
+            max-width: 350px; /* Limita largura máxima para cards individuais */
+            margin: 0 auto 20px auto; /* Centraliza cards e adiciona margem inferior */
+        }
+        .project-links {
+            flex-direction: column; /* Empilha links de projeto */
+            gap: 10px;
+        }
+
+        /* Formulário de Contato */
+        .contact-form-container {
+            padding: 20px;
+            margin: 20px auto;
+        }
+        .form-buttons {
+            flex-direction: column; /* Empilha botões do formulário */
+            gap: 10px;
+        }
+        .contact-form input[type="submit"],
+        .contact-form button[type="reset"] {
+            width: 100%; /* Ocupa largura total */
+            max-width: 250px; /* Limita largura máxima */
+            margin: 0 auto; /* Centraliza */
+        }
+        .contact-info {
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .social-links a {
+            font-size: 24px;
+            margin: 0 10px;
+        }
+    }
+
+    /* Ajustes para telas muito pequenas (ex: largura menor que 360px) */
+    @media (max-width: 360px) {
+        .navbar li {
+            margin: 0 5px; /* Reduz ainda mais o espaçamento dos links da navbar */
+            font-size: 14px;
+        }
+        .hero-content-box {
+            padding: 20px;
+        }
+        .hero-content-box .name-gradient {
+            font-size: 40px;
+        }
+        .hero-content-box .welcome-text,
+        .hero-content-box .developer-text {
+            font-size: 16px;
+        }
+        .section-title-container .ghost-text {
+            font-size: 30px;
+        }
+        .section-title-container h2 {
+            font-size: 26px;
+        }
+        .skill-item {
+            width: 100px; /* Reduz tamanho da caixa de skill */
+            height: 100px;
+        }
+        .skill-item i {
+            font-size: 35px;
+        }
+        .project-card {
+            padding: 15px;
+        }
+        .project-card h3 {
+            font-size: 20px;
+        }
+        .project-card p {
+            font-size: 14px;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="#home" class="logo">Douglas <span style="color: #00ff99;">Dev</span></a>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#formacao">Formação</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#experiencia">Experiência</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+  <canvas id="dnaCanvas"></canvas> 
+
+  <section id="home" class="hero-section">
+    <div class="hero-content-box">
+      <p class="welcome-text">Olá, eu sou o</p>
+      <h1 class="name-gradient">Douglas Vinicius</h1>
+      <p class="developer-text" id="typing-text">Desenvolvedor em Formação.</p> <div class="hero-buttons">
+        <a href="#contato" class="btn"><i class="fas fa-envelope"></i> Contato</a>
+        <a href="LINK_PARA_SEU_CURRICULO_EM_PDF" class="btn secondary" target="_blank"><i class="fas fa-download"></i> Currículo</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="section-title-container">
+        <span class="ghost-text">About</span>
+        <h2><i class="fas fa-user"></i>Sobre <span style="color: #00ccff;">Mim</span></h2>
+    </div>
+    <div class="about-content">
+        <div class="about-image">
+            <img src="Site/F112290A-13CB-4717-AEDB-707A2F8C4C0C.JPEG" alt="Foto de Perfil de Douglas Vinicius">
+        </div>
+        <div class="about-text">
+            <p>Douglas Vinicius Alves da Silva. Atualmente estudante de Análise e Desenvolvimento de Sistemas na Estácio, onde estou construindo uma base sólida em lógica de programação e fundamentos de Tecnologia da Informação. Possuo forte interesse em desenvolvimento e na criação de soluções funcionais e criativas. Sou proativo e dedicado ao aprendizado contínuo, buscando minha primeira oportunidade de estágio para aplicar e expandir meus conhecimentos em linguagens como C, Python, Java, além de HTML e CSS</p>
+        </div>
+    </div>
+  </section>
+
+ <section id="formacao">
+    <div class="section-title-container">
+        <span class="ghost-text">Education</span>
+        <h2><i class="fas fa-graduation-cap"></i>Formação <span style="color: #00ccff;">Acadêmica</span></h2>
+    </div>
+    
+    <div class="box">
+        <h3><strong>Análise e Desenvolvimento de Sistemas</strong></h3>
+        <p><strong>Estácio de Sá</strong> | Março de 2025 - 2027 (Previsão de Conclusão) | Cursando</p>
+        <ul>
+            <li>Atualmente no 2º semestre, com base sólida em lógica de programação e fundamentos de TI.</li>
+            <li>Foco em desenvolvimento de sistemas e tecnologias web/backend.</li>
+            <li>Preparação para desafios práticos e busca por estágio na área.</li>
+            </ul>
+    </div>
+
+  <section id="habilidades">
+    <div class="section-title-container">
+        <span class="ghost-text">Skills</span>
+        <h2><i class="fas fa-code"></i>Minhas <span style="color: #00ccff;">Habilidades</span></h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <i class="fab fa-html5"></i>
+        <p>HTML5</p>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-css3-alt"></i>
+        <p>CSS3</p>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-js"></i>
+        <p>JavaScript (Básico)</p>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-cogs"></i>
+        <p>Lógica de Programação (C)</p>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-python"></i>
+        <p>Python Básico</p>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-java"></i>
+        <p>Java (Iniciante)</p>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-git-alt"></i>
+        <p>Git</p>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-github"></i>
+        <p>GitHub</p>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-database"></i>
+        <p>Banco de Dados (SQL Básico)</p>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-terminal"></i>
+        <p>Linha de Comando (CLI)</p>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <p>Resolução de Problemas</p>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-lightbulb"></i>
+        <p>Criatividade</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="section-title-container">
+        <span class="ghost-text">Projects</span>
+        <h2><i class="fas fa-project-diagram"></i>Meus <span style="color: #00ccff;">Projetos</span></h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image">
+          <img src="Site/0r4kw7z6.png" alt="Imagem do Projeto C">
+        </div>
+        <div class="project-content">
+            <h3>Desafio Super Trunfo em C|Estacio</h3>
+            <p>Este projeto implementa uma versão avançada do clássico jogo Super Trunfo em C. Ele simula batalhas entre cartas com dados de cidades brasileiras, demonstrando minha aplicação de lógica complexa, manipulação de dados e interação via console</p>
+            <div class="tech-tags">
+              <span class="tech-tag">C</span>
+              <span class="tech-tag">Lógica de Programação</span>
+              <span class="tech-tag">Algoritimo</span>
+              <span class="tech-tag">Console App</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/ViniciusVivet/SuperTrunfoC" target="_blank">Repositório <i class="fab fa-github"></i></a>
+              </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-image">
+          <img src="Python/Captura de Tela (117).png" alt="Imagem do Projeto Python">
+        </div>
+        <div class="project-content">
+            <h3>Calculadora em Python</h3>
+            <p>Uma calculadora simples com interface de linha de comando, capaz de realizar operações aritméticas básicas. Ideal para iniciantes em Python.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">CLI</span>
+              <span class="tech-tag">Matemática</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/ViniciusVivet/calculadora-flet-python" target="_blank">Repositório <i class="fab fa-github"></i></a>
+            </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-image">
+          <img src="Python/Captura de tela_11-7-2025_3226_127.0.0.1.jpeg" alt="Imagem da Página Pessoal">
+        </div>
+        <div class="project-content">
+            <h3>Página Pessoal HTML/CSS/JS</h3>
+            <p>Este próprio portfólio online, desenvolvido para demonstrar habilidades em HTML5, CSS3 e design responsivo e estruturação de projetos web.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">Design Responsivo</span>
+            </div>
+            <div class="project-links">
+              <a href="LINK_DO_REPO_DESTE_SITE_NO_GITHUB" target="_blank">Repositório <i class="fab fa-github"></i></a>
+              </div>
+        </div>
+      </div>
+
+      </div>
+    <a href="https://github.com/ViniciusVivet?tab=repositories" class="btn" target="_blank">Ver Todos os Projetos no GitHub</a>
+  </section>
+
+  <section id="experiencia">
+    <div class="section-title-container">
+        <span class="ghost-text">Experience</span>
+        <h2><i class="fas fa-briefcase"></i>Minha <span style="color: #00ccff;">Experiência</span></h2>
+    </div>
+    <div class="box experience-item">
+        <h3>Estudante / Desenvolvedor em Formação</h3>
+        <span>Estácio de Sá | Março de 2025 - Presente</span>
+        <ul>
+            <li>Aplicação prática de lógica de programação em projetos acadêmicos e pessoais utilizando C, Python e Java.</li>
+            <li>Desenvolvimento de interfaces básicas com HTML e CSS, focando em usabilidade e design responsivo.</li>
+            <li>Colaboração em projetos em grupo, aprimorando habilidades de comunicação e trabalho em equipe.</li>
+            <li>Exploração de conceitos de controle de versão utilizando Git e GitHub para gerenciamento de código.</li>
+        </ul>
+    </div>
+    </section>
+
+  <section id="servicos">
+    <div class="section-title-container">
+        <span class="ghost-text">Services</span>
+        <h2><i class="fas fa-handshake"></i>O Que Eu Posso <span style="color: #00ccff;">Oferecer</span></h2>
+    </div>
+    <div class="services-grid">
+      <div class="box service-item">
+        <i class="fas fa-code"></i>
+        <h3>Desenvolvimento Web Front-End</h3>
+        <p>Criação de interfaces de usuário responsivas e intuitivas com HTML e CSS, focando na experiência do usuário.</p>
+      </div>
+      <div class="box service-item">
+        <i class="fas fa-laptop-code"></i>
+        <h3>Lógica e Resolução de Problemas</h3>
+        <p>Aplicação de algoritmos e estruturas de dados para resolver desafios de programação em C e Python.</p>
+      </div>
+      <div class="box service-item">
+        <i class="fas fa-database"></i>
+        <h3>Fundamentos de Banco de Dados</h3>
+        <p>Compreensão e manipulação básica de bancos de dados relacionais e não relacionais.</p>
+      </div>
+      <div class="box service-item">
+        <i class="fas fa-cogs"></i>
+        <h3>Manutenção e Refatoração</h3>
+        <p>Habilidade para analisar e refatorar códigos existentes, buscando otimização e clareza.</p>
+      </div>
+      </div>
+  </section>
+
+  <section id="contato">
+    <div class="section-title-container">
+        <span class="ghost-text">Contact</span>
+        <h2><i class="fas fa-envelope-open-text"></i>Entre em <span style="color: #00ccff;">Contato</span></h2>
+    </div>
+    <p>Se você tem alguma dúvida, proposta de estágio, quer discutir tecnologia ou apenas bater um papo, sinta-se à vontade para me enviar uma mensagem. Responderei o mais breve possível!</p>
+
+    <div class="contact-form-container">
+        <form action="#" method="POST"> <label for="name">Seu Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Seu Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="subject">Assunto:</label>
+            <input type="text" id="subject" name="subject">
+
+            <label for="message">Sua Mensagem:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <div class="form-buttons">
+                <button type="reset" class="btn secondary">Limpar</button>
+                <input type="submit" value="Enviar Mensagem" class="btn">
+            </div>
+        </form>
+    </div>
+
+    <div class="contact-info">
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span><a href="douglasvivet@gmail.com">douglasvivet@gmail.com</a></span>
+        </div>
+        <div class="contact-item">
+            <i class="fab fa-linkedin"></i>
+            <span><a href="https://www.linkedin.com/in/vivetsp/" target="_blank">LinkedIn/Vivetsp</a></span>
+        </div>
+        
+        </div>
+  </section>
+
+  <footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/vivetsp/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/ViniciusVivet" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+    <p class="footer-text">&copy; 2025 Douglas Vinicius Alves da Silva. Todos os direitos reservados. Feito com muito café e dedicação ☕💻</p>
+  </footer>
+
+  <button id="scrollToTopBtn" title="Voltar ao Topo"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+    // JavaScript para o efeito de digitação no texto do desenvolvedor
+    const typingTextElement = document.getElementById('typing-text');
+    const phrases = [
+        "Desenvolvedor em Formação.",
+        "Developer in Progress."
+    ];
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    const typingSpeed = 100; // ms por caractere ao digitar
+    const erasingSpeed = 50;  // ms por caractere ao apagar
+    const pauseTime = 2000;  // ms de pausa após digitar (2 segundos)
+    const delayBetweenPhrases = 1000; // ms de pausa após apagar completamente e antes de digitar a próxima
+
+    // Garante que typingTextElement exista antes de tentar usá-lo
+    if (typingTextElement) {
+        function typeWriter() {
+            const currentPhrase = phrases[phraseIndex];
+
+            if (!isDeleting) {
+                // Digitanto
+                if (charIndex < currentPhrase.length) {
+                    typingTextElement.textContent += currentPhrase.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, typingSpeed);
+                } else {
+                    // Frase digitada, agora pausa e começa a apagar
+                    isDeleting = true;
+                    setTimeout(typeWriter, pauseTime);
+                }
+            } else {
+                // Apagando
+                if (charIndex > 0) {
+                    typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(typeWriter, erasingSpeed);
+                } else {
+                    // Frase apagada, move para a próxima frase
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length; // Loop pelas frases
+                    setTimeout(typeWriter, delayBetweenPhrases); // Começa a digitar a próxima frase
+                }
+            }
+        }
+
+        // Inicia o efeito de digitação quando a página carrega
+        document.addEventListener('DOMContentLoaded', () => {
+            // Para garantir que o texto inicial não apareça antes do JS
+            typingTextElement.textContent = ""; 
+            typeWriter();
+        });
+    } else {
+        console.error("Elemento 'typing-text' não encontrado. O efeito de digitação não será iniciado.");
+    }
+
+
+    // --- JavaScript para o fundo animado (DNA-like) ---
+    const canvas = document.getElementById('dnaCanvas');
+    // Adiciona uma verificação para garantir que o canvas foi encontrado
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 250 }; // Raio de interação do mouse
+
+        // Cores da sua paleta
+        const particleStrokeColor = '#00ff99'; // Verde Neon para a borda
+        const particleFillColor = 'rgba(0, 204, 255, 0.1)'; // Azul Vibrante semi-transparente para o preenchimento
+        const lineColor = 'rgba(0, 204, 255, 0.1)'; // Azul Vibrante semi-transparente para as linhas
+
+        // Configurações das partículas
+        const numberOfParticles = 150; // AUMENTADO: Mais partículas para um efeito mais denso
+        const particleSpeedFactor = 1.2; // AUMENTADO: Velocidade base das partículas
+        const lineDistance = 200; // AUMENTADO: Distância máxima para desenhar linhas
+        const particleRadius = 1.8; // Raio base da partícula
+        const particleStrokeWidth = 2.8; // AUMENTADO: Espessura da borda da partícula
+
+        // Garante que o canvas ocupe a tela inteira e se redimensione
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // Reinicia as partículas ao redimensionar para evitar problemas de posicionamento
+            particles = [];
+            createParticles();
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas(); // Chama no início para configurar o tamanho inicial
+
+        // Cria as partículas
+        function createParticles() {
+            for (let i = 0; i < numberOfParticles; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * particleSpeedFactor,
+                    vy: (Math.random() - 0.5) * particleSpeedFactor,
+                    radius: particleRadius // Raio base definido acima
+                });
+            }
+        }
+
+        // Desenha uma única partícula (agora com borda e preenchimento)
+        function drawParticle(particle) {
+            // Desenha a borda da partícula
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.radius + 1, 0, Math.PI * 2); // Raio ligeiramente maior para a borda
+            ctx.strokeStyle = particleStrokeColor;
+            ctx.lineWidth = particleStrokeWidth;
+            ctx.stroke();
+
+            // Desenha o preenchimento da partícula
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+            ctx.fillStyle = particleFillColor;
+            ctx.fill();
+        }
+
+        // Atualiza a posição das partículas e lida com colisões nas bordas
+        function updateParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+
+                // Move a partícula
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Inverte a direção se colidir com as bordas
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                // Interação com o mouse (repulsão)
+                let dxMouse = mouse.x - p.x;
+                let dyMouse = mouse.y - p.y;
+                let distanceMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+
+                if (distanceMouse < mouse.radius) {
+                    let forceDirectionX = dxMouse / distanceMouse;
+                    let forceDirectionY = dyMouse / distanceMouse;
+                    let force = (mouse.radius - distanceMouse) / mouse.radius;
+                    let repulsionStrength = 12; // Força de repulsão
+                    let directionX = forceDirectionX * force * repulsionStrength;
+                    let directionY = forceDirectionY * force * repulsionStrength;
+
+                    p.x -= directionX;
+                    p.y -= directionY;
+                }
+            }
+        }
+
+        // Desenha as linhas entre partículas próximas
+        function drawLines() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i; j < particles.length; j++) {
+                    let p1 = particles[i];
+                    let p2 = particles[j];
+
+                    let dx = p1.x - p2.x;
+                    let dy = p1.y - p2.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < lineDistance) {
+                        let opacity = 1 - (distance / lineDistance);
+                        ctx.strokeStyle = lineColor.replace('1)', opacity + ')');
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Loop principal da animação
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            updateParticles();
+            drawLines();
+            particles.forEach(drawParticle);
+        }
+
+        // Eventos de mouse para interação
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+        canvas.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        // Inicia a criação e animação das partículas
+        createParticles();
+        animate();
+    } else {
+        console.error("Elemento 'dnaCanvas' não encontrado. A animação de fundo não será iniciada.");
+    }
+
+
+    // --- JavaScript para revelar seções ao rolar (Reveal Animation) ---
+    // Seleciona todas as seções exceto a home que já está visível
+    const sectionsToObserve = document.querySelectorAll('section:not(#home)'); 
+    const observerOptions = {
+        root: null, // Observa a viewport
+        rootMargin: '0px',
+        threshold: 0.2 // Quando 20% da seção está visível
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible'); // Adiciona classe para animar
+                observer.unobserve(entry.target); // Deixa de observar depois de visível
+            }
+        });
+    }, observerOptions);
+
+    sectionsToObserve.forEach(section => {
+        sectionObserver.observe(section); // Começa a observar cada seção
+    });
+
+
+    // JavaScript para o botão de voltar ao topo
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    };
+
+    scrollToTopBtn.addEventListener("click", function() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // JavaScript para o smooth scroll da navegação
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+  </script>
+
+</body>
+</html>
