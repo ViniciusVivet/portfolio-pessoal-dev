@@ -10,7 +10,7 @@ Este repositório é o meu portfólio online e currículo interativo, desenvolvi
 
 Clique no link abaixo para explorar a experiência completa do meu portfólio no navegador:
 
-[**ACESSE O SEU PORTFÓLIO ONLINE AQUI!**](https://ViniciusVivet.github.io/portfolio-pessoal-dev/.)
+[**PORTFOLIO DOUGLAS VINICIUS!**](https://ViniciusVivet.github.io/portfolio-pessoal-dev/.)
 ---
 
 ## 🎯Este projeto demonstra mais do que apenas código;
