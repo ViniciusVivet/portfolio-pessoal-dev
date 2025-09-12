@@ -128,7 +128,27 @@ section.is-visible { opacity: 1; transform: translateY(0); }
 
 /* Categorias de habilidades */
 .skills-category { margin-bottom: 20px; text-align: left; }
-.skills-category h3 { margin: 10px 0 10px 6px; font-size: 18px; color: #00ccff; font-weight: 700; letter-spacing: .3px; }
+.skills-category h3 {
+  margin: 10px 0 10px 6px;
+  font-size: 18px;
+  color: #9bd7ff;
+  font-weight: 700;
+  letter-spacing: .3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(0,204,255,.14), rgba(0,204,255,.06));
+  border: 1px solid rgba(0,204,255,.35);
+  box-shadow: 0 6px 18px rgba(0,204,255,.18), inset 0 0 12px rgba(0,204,255,.08);
+  backdrop-filter: blur(2px);
+}
+.skills-category h3:hover {
+  background: linear-gradient(180deg, rgba(0,204,255,.22), rgba(0,204,255,.10));
+  border-color: #00ccff;
+  box-shadow: 0 8px 22px rgba(0,204,255,.25), inset 0 0 14px rgba(0,204,255,.12);
+}
 
 /* (revertido) layout especial da seção de Linguagens removido */
 
@@ -288,12 +308,12 @@ footer { margin-top: 60px; padding: 40px 20px; font-size: 15px; color: #666; bac
 .visit-toast {
   position: fixed;
   top: 12px;
-  right: 16px;
+  left: 16px;
   z-index: 1100;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  gap: 6px;
+  padding: 6px 10px;
   border-radius: 999px;
   background: rgba(0, 0, 0, .65);
   border: 1px solid rgba(255,255,255,.15);
@@ -303,19 +323,23 @@ footer { margin-top: 60px; padding: 40px 20px; font-size: 15px; color: #666; bac
   transform: translateY(-20px);
   opacity: 0;
   pointer-events: none;
-  transition: transform .3s ease, opacity .3s ease;
+  transition: opacity .3s ease;
+  cursor: move;
+  user-select: none;
+  font-size: 12px;
 }
-.visit-toast.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.visit-toast.show { opacity: 1; pointer-events: auto; }
 .visit-toast i { color: #00ff99; }
 .visit-toast .visit-toast-close {
   background: transparent;
   border: none;
   color: #e6fff7;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1;
   cursor: pointer;
-  padding: 2px 6px;
-  border-radius: 6px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin-left: 4px;
 }
 .visit-toast .visit-toast-close:hover { background: rgba(255,255,255,.1); }
 

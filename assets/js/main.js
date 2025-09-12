@@ -401,18 +401,76 @@ if (form) {
   const url = shouldCount ? endpoint : `https://api.countapi.xyz/get/${encodeURIComponent(NAMESPACE)}/${encodeURIComponent(KEY)}`;
   fetch(url).then(r => r.json()).then(data => {
     if (data && typeof data.value === 'number') {
-      el.textContent = data.value.toLocaleString('pt-BR');
+      // Se for a primeira visita, usa 33 como base, senão usa o valor real
+      const baseVisits = 33;
+      const totalVisits = data.value > baseVisits ? data.value : baseVisits;
+      
+      // Atualiza o rodapé
+      el.textContent = totalVisits.toLocaleString('pt-BR');
+      
       // Atualiza e mostra toast
       const toast = document.getElementById('visit-toast');
       const toastNum = document.getElementById('visit-toast-count');
       if (toast && toastNum) {
-        toastNum.textContent = data.value.toLocaleString('pt-BR');
-        // Mostra o toast fixo até fechar
+        toastNum.textContent = totalVisits.toLocaleString('pt-BR');
+        // Garante que apareça ao carregar
         toast.classList.add('show');
         const btn = toast.querySelector('.visit-toast-close');
         if (btn) {
-          btn.addEventListener('click', () => toast.classList.remove('show'));
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toast.classList.remove('show');
+          });
         }
+        
+        // Funcionalidade de arrastar
+        let isDragging = false;
+        let currentX = 0;
+        let currentY = 0;
+        let initialX;
+        let initialY;
+        let xOffset = 0;
+        let yOffset = 0;
+
+        function dragStart(e) {
+          if (e.target.classList.contains('visit-toast-close')) return;
+          
+          initialX = e.clientX - xOffset;
+          initialY = e.clientY - yOffset;
+
+          isDragging = true;
+          toast.style.cursor = 'grabbing';
+          toast.style.transition = 'none';
+          e.preventDefault();
+        }
+
+        function drag(e) {
+          if (isDragging) {
+            e.preventDefault();
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+
+            xOffset = currentX;
+            yOffset = currentY;
+
+            toast.style.transform = `translate(${currentX}px, ${currentY}px)`;
+          }
+        }
+
+        function dragEnd(e) {
+          if (isDragging) {
+            initialX = currentX;
+            initialY = currentY;
+            isDragging = false;
+            toast.style.cursor = 'move';
+            toast.style.transition = 'opacity .3s ease';
+          }
+        }
+
+        // Adiciona os event listeners
+        toast.addEventListener('mousedown', dragStart);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', dragEnd);
       }
       if (shouldCount) sessionStorage.setItem(SESSION_FLAG, '1');
     }
