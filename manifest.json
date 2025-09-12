@@ -1,0 +1,22 @@
+{
+  "name": "Douglas Vinicius | Portfólio",
+  "short_name": "Portfólio",
+  "start_url": "/portfolio-pessoal-dev/",
+  "scope": "/portfolio-pessoal-dev/",
+  "display": "standalone",
+  "background_color": "#0e0e0e",
+  "theme_color": "#0e0e0e",
+  "icons": [
+    {
+      "src": "Site/fotos/0r4kw7z6.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "Site/fotos/0r4kw7z6.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+

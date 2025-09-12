@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ViniciusVivet.github.io/portfolio-pessoal-dev/sitemap.xml
+

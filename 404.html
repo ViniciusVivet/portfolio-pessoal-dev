@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página não encontrada - 404</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/404.css">
+  <style>
+    :root { --neon-blue:#00ccff; --neon-green:#00ff99; }
+    html, body { height:100%; }
+    body { margin:0; padding:0; font-family:'Poppins', Arial, sans-serif; background:#0e0e0e; color:#f0f0f0; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden; }
+    #starfield { position:absolute; inset:0; z-index:0; }
+    .box { position:relative; z-index:1; background:rgba(10,10,10,.7); padding:40px; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,.6); max-width:720px; border:1px solid rgba(255,255,255,.15); backdrop-filter: blur(2px); }
+    h1 { margin:0 0 16px; font-size:42px; color:var(--neon-blue); font-family:'Press Start 2P', cursive; text-shadow:0 0 8px rgba(0,204,255,.6); }
+    p { margin:0 0 22px; color:#ddd; }
+    .subtitle { color:#9ee; font-size:14px; margin-bottom:28px; text-transform:uppercase; letter-spacing:2px; }
+    a.btn { display:inline-block; padding:12px 24px; border-radius:10px; border:2px solid var(--neon-green); color:var(--neon-green); text-decoration:none; font-weight:600; box-shadow:0 0 10px rgba(0,255,153,.25) inset; }
+    a.btn:hover { background:var(--neon-green); color:#0e0e0e; transform:translateY(-2px); }
+    .hint { font-size:12px; color:#aaa; margin-top:10px; }
+    .kbd { border:1px solid #555; padding:2px 6px; border-radius:4px; background:#111; color:#eee; font-family:monospace; }
+  </style>
+    :root { --neon-blue:#00ccff; --neon-green:#00ff99; }
+    html, body { height:100%; }
+    body { margin:0; padding:0; font-family:'Poppins', Arial, sans-serif; background:#0e0e0e; color:#f0f0f0; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden; }
+    #starfield { position:absolute; inset:0; z-index:0; }
+    .box { position:relative; z-index:1; background:rgba(10,10,10,.7); padding:40px; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,.6); max-width:720px; border:1px solid rgba(255,255,255,.15); backdrop-filter: blur(2px); }
+    h1 { margin:0 0 16px; font-size:42px; color:var(--neon-blue); font-family:'Press Start 2P', cursive; text-shadow:0 0 8px rgba(0,204,255,.6); }
+    p { margin:0 0 22px; color:#ddd; }
+    .subtitle { color:#9ee; font-size:14px; margin-bottom:28px; text-transform:uppercase; letter-spacing:2px; }
+    a.btn { display:inline-block; padding:12px 24px; border-radius:10px; border:2px solid var(--neon-green); color:var(--neon-green); text-decoration:none; font-weight:600; box-shadow:0 0 10px rgba(0,255,153,.25) inset; }
+    a.btn:hover { background:var(--neon-green); color:#0e0e0e; transform:translateY(-2px); }
+    .hint { font-size:12px; color:#aaa; margin-top:10px; }
+    .kbd { border:1px solid #555; padding:2px 6px; border-radius:4px; background:#111; color:#eee; font-family:monospace; }
+  </style>
+</head>
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="box" role="main" aria-labelledby="title-404">
+    <h1 id="title-404">404 // GAME OVER</h1>
+    <p class="subtitle">A fase que você procurou não existe</p>
+    <p>Você pode voltar para a Home e continuar a jornada.</p>
+    <a href="./" class="btn" aria-label="Voltar para a Home">Start</a>
+    <div class="hint">Dica: pressione <span class="kbd">H</span> para voltar</div>
+  </div>
+
+  <script src="assets/js/404.js" defer></script>
+  <!--
+  <script>
+    "use strict";
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    let anim = null;
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initStars(); }
+    window.addEventListener('resize', resize);
+    function initStars() { const count = prefersReducedMotion ? 0 : Math.min(400, Math.floor(canvas.width * canvas.height / 4000)); stars = Array.from({ length: count }).map(() => ({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, z: Math.random()*2 + 0.5, r: Math.random()*1.3 + 0.2 })); }
+    function loop() { ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle = 'rgba(255,255,255,0.9)'; for (const s of stars) { ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill(); s.y += s.z; if (s.y > canvas.height) { s.y = 0; s.x = Math.random()*canvas.width; } } anim = requestAnimationFrame(loop); }
+    function start() { resize(); if (!prefersReducedMotion) { anim = requestAnimationFrame(loop); } }
+    document.addEventListener('visibilitychange', () => { if (document.hidden && anim) { cancelAnimationFrame(anim); anim = null; } else if (!document.hidden && !prefersReducedMotion && !anim) { anim = requestAnimationFrame(loop); } });
+    window.addEventListener('keydown', (e) => { if (e.key.toLowerCase() === 'h') { window.location.href = './'; } });
+    start();
+  </script>
+  -->
+</body>
+</html>
