@@ -269,22 +269,25 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Formulário: honeypot + feedback + timeout/retry
-const form = document.querySelector('form[action*="send-message"]');
+// Formulário: FormSubmit.co (submit normal) ou API no Render (fetch + feedback)
+const form = document.getElementById('contact-form');
 if (form) {
-  const honeypot = document.createElement('input');
-  honeypot.type = 'text';
-  honeypot.name = 'website';
-  honeypot.tabIndex = -1;
-  honeypot.autocomplete = 'off';
-  honeypot.className = 'visually-hidden';
-  form.appendChild(honeypot);
-
   const statusEl = document.getElementById('form-status');
   const submitBtn = form.querySelector('input[type="submit"]');
+  const isFormSubmit = form.action && form.action.includes('formsubmit.co');
+
+  if (!isFormSubmit) {
+    const honeypot = document.createElement('input');
+    honeypot.type = 'text';
+    honeypot.name = 'website';
+    honeypot.tabIndex = -1;
+    honeypot.autocomplete = 'off';
+    honeypot.className = 'visually-hidden';
+    form.appendChild(honeypot);
+  }
 
   function fetchWithTimeout(resource, options = {}) {
-    const { timeout = 15000 } = options; // 15s
+    const { timeout = 15000 } = options;
     return new Promise((resolve, reject) => {
       const timer = setTimeout(() => reject(new Error('timeout')), timeout);
       fetch(resource, options).then(
@@ -305,14 +308,19 @@ if (form) {
   }
 
   form.addEventListener('submit', async (e) => {
+    if (isFormSubmit) return; // deixa o envio normal para FormSubmit.co
+
     e.preventDefault();
     if (submitBtn) submitBtn.disabled = true;
-    statusEl.textContent = 'Enviando...';
-    statusEl.classList.remove('success','error');
+    if (statusEl) {
+      statusEl.textContent = 'Enviando...';
+      statusEl.classList.remove('success', 'error');
+    }
 
-    if (honeypot.value) {
-      statusEl.textContent = 'Mensagem enviada.';
-      statusEl.classList.add('success');
+    const honeypot = form.querySelector('input[name="website"]');
+    if (honeypot && honeypot.value) {
+      if (statusEl) statusEl.textContent = 'Mensagem enviada.';
+      if (statusEl) statusEl.classList.add('success');
       form.reset();
       if (submitBtn) submitBtn.disabled = false;
       return;
@@ -322,16 +330,16 @@ if (form) {
       const fd = new FormData(form);
       const res = await fetchWithRetry(form.action, { method: 'POST', body: fd });
       if (res.ok) {
-        statusEl.textContent = 'Mensagem enviada com sucesso!';
-        statusEl.classList.add('success');
+        if (statusEl) statusEl.textContent = 'Mensagem enviada com sucesso!';
+        if (statusEl) statusEl.classList.add('success');
         form.reset();
       } else {
-        statusEl.textContent = 'Não foi possível enviar agora. Tente novamente mais tarde.';
-        statusEl.classList.add('error');
+        if (statusEl) statusEl.textContent = 'Não foi possível enviar agora. Tente novamente mais tarde.';
+        if (statusEl) statusEl.classList.add('error');
       }
     } catch (err) {
-      statusEl.textContent = 'Falha de conexão. Verifique sua internet e tente novamente.';
-      statusEl.classList.add('error');
+      if (statusEl) statusEl.textContent = 'Falha de conexão. Verifique sua internet e tente novamente.';
+      if (statusEl) statusEl.classList.add('error');
     } finally {
       if (submitBtn) submitBtn.disabled = false;
     }
