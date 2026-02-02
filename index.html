@@ -1937,15 +1937,23 @@
       <li><a href="#projetos">Projetos</a></li>
       <li><a href="#experiencia">Experiência</a></li>
       <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#diversao">Diversão</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
+    <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Alternar tema claro e escuro" title="Alternar tema">
+      <i class="fas fa-sun theme-icon theme-icon-sun" aria-hidden="true"></i>
+      <i class="fas fa-moon theme-icon theme-icon-moon" aria-hidden="true"></i>
+    </button>
   </nav>
 
   <canvas id="dnaCanvas"></canvas> 
 
-  <div id="visit-toast" class="visit-toast show" role="status" aria-live="polite" aria-label="Total de visitas" title="Número total de visitas ao portfólio">
-    <i class="fas fa-eye" aria-hidden="true"></i>
-    <span id="visit-toast-count">33</span>
+  <div id="visit-toast" class="visit-toast show" role="status" aria-live="polite" aria-label="Total de visitas">
+    <span class="visit-tooltip-wrap visit-tooltip-wrap--toast" aria-describedby="visit-toast-tooltip-text">
+      <i class="fas fa-eye visit-eye-icon" aria-hidden="true"></i>
+      <span id="visit-toast-tooltip-text" class="visit-tooltip visit-tooltip--below" role="tooltip">-- é o número de visitas no site</span>
+    </span>
+    <span id="visit-toast-count">--</span>
     <button type="button" class="visit-toast-close" aria-label="Fechar notificação">&times;</button>
   </div>
 
@@ -2108,7 +2116,32 @@
         </div>
       </div>
 
-      <!-- 2) Board Java POO -->
+      <!-- 2) Orbitamos -->
+      <div class="project-card clickable-card" data-link="https://orbitamos-ljsglwhqw-viniciusvivets-projects.vercel.app">
+        <div class="project-image">
+          <img src="Site/fotos/orbitamos.png" alt="Orbitamos - Portal gamificado" loading="lazy" width="300" height="180">
+        </div>
+        <div class="project-content">
+            <h3>Orbitamos <span class="subtitle">(Plataforma Gamificada)</span></h3>
+            <p>Plataforma web gamificada para educação prática e transição de carreira em tecnologia, com foco em trilhas, progresso e uma experiência simples de usar. Front em Next.js + TypeScript, com base para API REST (Spring Boot) e persistência em PostgreSQL (Supabase).</p>
+            <div class="tech-tags">
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Tailwind</span>
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">API REST</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Supabase</span>
+              <span class="tech-tag">Vercel</span>
+            </div>
+            <div class="project-links">
+              <a href="https://orbitamos-ljsglwhqw-viniciusvivets-projects.vercel.app" target="_blank" rel="noopener noreferrer">Ver projeto <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+      </div>
+
+      <!-- 3) Board Java POO -->
       <div class="project-card clickable-card" data-link="https://github.com/ViniciusVivet/MeusExerciciosJava">
         <div class="project-image">
           <img src="Site/fotos/board-java.png" alt="Board de Tarefas em Java (POO)" loading="lazy" width="300" height="180">
@@ -2145,7 +2178,7 @@
         </div>
       </div>
 
-      <!-- 4) Desafio Super Trunfo em C -->
+      <!-- 5) Desafio Super Trunfo em C -->
       <div class="project-card">
         <div class="project-image">
           <img src="Site/fotos/0r4kw7z6.png" alt="Imagem do Projeto C" loading="lazy" width="300" height="180">
@@ -2162,25 +2195,6 @@
             <div class="project-links">
               <a href="https://github.com/ViniciusVivet/SuperTrunfoC" target="_blank" rel="noopener noreferrer">Repositório <i class="fab fa-github"></i></a>
               </div>
-        </div>
-      </div>
-
-      <!-- 5) Calculadora Python -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="Site/fotos/cal-img.png" alt="Imagem do Projeto Python" loading="lazy" width="300" height="180">
-        </div>
-        <div class="project-content">
-            <h3>Calculadora em Python</h3>
-            <p>Uma calculadora simples com interface de linha de comando, capaz de realizar operações aritméticas básicas. Ideal para iniciantes em Python.</p>
-            <div class="tech-tags">
-              <span class="tech-tag">Python</span>
-              <span class="tech-tag">CLI</span>
-              <span class="tech-tag">Matemática</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/ViniciusVivet/calculadora-flet-python" target="_blank" rel="noopener noreferrer">Repositório <i class="fab fa-github"></i></a>
-            </div>
         </div>
       </div>
 
@@ -2284,6 +2298,21 @@
         </div>
   </section>
 
+  <section id="diversao" aria-labelledby="title-diversao">
+    <div class="section-title-container">
+      <span class="ghost-text">Fun</span>
+      <h2 id="title-diversao"><i class="fas fa-gamepad"></i> Um <span style="color: #00ccff;">Minigame</span></h2>
+    </div>
+    <p class="dino-hint">Pressione <kbd>Espaço</kbd> para pular, <kbd>P</kbd> pausar, <kbd>R</kbd> reiniciar.</p>
+    <div class="dino-wrapper">
+      <div class="dino-scores">
+        <span>Pontuação: <strong id="dinoScore">0</strong></span>
+        <span>Recorde: <strong id="dinoBest">0</strong></span>
+      </div>
+      <canvas id="dinoCanvas" width="600" height="150" aria-label="Minijogo do dinossauro, pule os obstáculos"></canvas>
+    </div>
+  </section>
+
   </main>
 
   <footer>
@@ -2291,13 +2320,20 @@
         <a href="https://www.linkedin.com/in/vivetsp/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a href="https://github.com/ViniciusVivet" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
         </div>
-    <p class="visits"><i class="fas fa-eye" aria-hidden="true"></i> Visitas: <span id="visit-count">--</span></p>
+    <p class="visits">
+      <span class="visit-tooltip-wrap" aria-describedby="visit-tooltip-text">
+        <i class="fas fa-eye visit-eye-icon" aria-hidden="true"></i>
+        <span id="visit-tooltip-text" class="visit-tooltip" role="tooltip">-- é o número de visitas no site</span>
+      </span>
+      Visitas: <span id="visit-count">--</span>
+    </p>
     <p class="footer-text">&copy; 2025 Douglas Vinicius Alves da Silva. Todos os direitos reservados. Feito com muito café e dedicação ☕💻</p>
   </footer>
 
   <button id="scrollToTopBtn" title="Voltar ao Topo"><i class="fas fa-arrow-up"></i></button>
 
   <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/games/dino.js" defer></script>
   <!--
   <script>
     "use strict";
