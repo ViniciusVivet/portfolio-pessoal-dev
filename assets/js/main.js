@@ -397,75 +397,70 @@ if (form) {
 })();
 
 
-// --- Contador de visitas (CountAPI) ---
+// --- Contador de visitas (countapi.mileshilliard.com) ---
 (function initVisitCounter(){
   const el = document.getElementById('visit-count');
   if (!el) return;
-  const NAMESPACE = 'viniciusvivet-portfolio';
-  const KEY = 'site-visits-total';
-  const endpoint = `https://api.countapi.xyz/hit/${encodeURIComponent(NAMESPACE)}/${encodeURIComponent(KEY)}`;
+
   const SESSION_FLAG = 'visit-counted';
   const shouldCount = !sessionStorage.getItem(SESSION_FLAG);
-  const url = shouldCount ? endpoint : `https://api.countapi.xyz/get/${encodeURIComponent(NAMESPACE)}/${encodeURIComponent(KEY)}`;
-  fetch(url).then(r => r.json()).then(data => {
-    if (data && typeof data.value === 'number') {
-      // Se for a primeira visita, usa 33 como base, senão usa o valor real
-      const baseVisits = 33;
-      const totalVisits = data.value > baseVisits ? data.value : baseVisits;
-      
-      // Atualiza o rodapé
-      el.textContent = totalVisits.toLocaleString('pt-BR');
-      
-      // Atualiza e mostra toast
-      const toast = document.getElementById('visit-toast');
-      const toastNum = document.getElementById('visit-toast-count');
-      if (toast && toastNum) {
-        toastNum.textContent = totalVisits.toLocaleString('pt-BR');
-        // Garante que apareça ao carregar
-        toast.classList.add('show');
-        const btn = toast.querySelector('.visit-toast-close');
-        if (btn) {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toast.classList.remove('show');
-          });
-        }
-        
-        // Funcionalidade de arrastar
-        let isDragging = false;
-        let currentX = 0;
-        let currentY = 0;
-        let initialX;
-        let initialY;
-        let xOffset = 0;
-        let yOffset = 0;
+  const KEY = 'viniciusvivet-portfolio-visits';
+  const MIN_VISITS = 46; // valor inicial "fake"; abaixo disso a API é ajustada para 46 e as próximas visitas sobem normal (47, 48...)
+  const baseUrl = 'https://countapi.mileshilliard.com/api/v1';
+  const url = shouldCount
+    ? `${baseUrl}/hit/${encodeURIComponent(KEY)}`
+    : `${baseUrl}/get/${encodeURIComponent(KEY)}`;
 
+  function parseValue(data) {
+    if (data == null || data.value == null) return null;
+    const v = data.value;
+    return typeof v === 'number' ? v : parseInt(v, 10);
+  }
+
+  function updateUI(totalVisits) {
+    const num = Math.max(0, totalVisits);
+    const numStr = num.toLocaleString('pt-BR');
+    el.textContent = numStr;
+    const tooltipEl = document.getElementById('visit-tooltip-text');
+    const toastTooltipEl = document.getElementById('visit-toast-tooltip-text');
+    const tooltipText = numStr + ' é o número de visitas no site';
+    if (tooltipEl) tooltipEl.textContent = tooltipText;
+    if (toastTooltipEl) toastTooltipEl.textContent = tooltipText;
+    const toast = document.getElementById('visit-toast');
+    const toastNum = document.getElementById('visit-toast-count');
+    if (toast && toastNum) {
+      toastNum.textContent = numStr;
+      toast.classList.add('show');
+      const btn = toast.querySelector('.visit-toast-close');
+      if (btn && !btn._bound) {
+        btn._bound = true;
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toast.classList.remove('show');
+        });
+      }
+      if (!toast._dragBound) {
+        toast._dragBound = true;
+        let isDragging = false, currentX = 0, currentY = 0, initialX, initialY, xOffset = 0, yOffset = 0;
         function dragStart(e) {
           if (e.target.classList.contains('visit-toast-close')) return;
-          
           initialX = e.clientX - xOffset;
           initialY = e.clientY - yOffset;
-
           isDragging = true;
           toast.style.cursor = 'grabbing';
           toast.style.transition = 'none';
           e.preventDefault();
         }
-
         function drag(e) {
-          if (isDragging) {
-            e.preventDefault();
-            currentX = e.clientX - initialX;
-            currentY = e.clientY - initialY;
-
-            xOffset = currentX;
-            yOffset = currentY;
-
-            toast.style.transform = `translate(${currentX}px, ${currentY}px)`;
-          }
+          if (!isDragging) return;
+          e.preventDefault();
+          currentX = e.clientX - initialX;
+          currentY = e.clientY - initialY;
+          xOffset = currentX;
+          yOffset = currentY;
+          toast.style.transform = `translate(${currentX}px, ${currentY}px)`;
         }
-
-        function dragEnd(e) {
+        function dragEnd() {
           if (isDragging) {
             initialX = currentX;
             initialY = currentY;
@@ -474,15 +469,31 @@ if (form) {
             toast.style.transition = 'opacity .3s ease';
           }
         }
-
-        // Adiciona os event listeners
         toast.addEventListener('mousedown', dragStart);
         document.addEventListener('mousemove', drag);
         document.addEventListener('mouseup', dragEnd);
       }
-      if (shouldCount) sessionStorage.setItem(SESSION_FLAG, '1');
     }
-  }).catch(() => { el.textContent = '—'; });
+    if (shouldCount) sessionStorage.setItem(SESSION_FLAG, '1');
+  }
+
+  fetch(url)
+    .then(r => r.json())
+    .then(data => {
+      const totalVisits = parseValue(data);
+      if (totalVisits === null || isNaN(totalVisits)) {
+        el.textContent = '—';
+        return;
+      }
+      if (totalVisits < MIN_VISITS) {
+        fetch(`${baseUrl}/set/${encodeURIComponent(KEY)}?value=${MIN_VISITS}`)
+          .then(() => updateUI(MIN_VISITS))
+          .catch(() => updateUI(totalVisits));
+      } else {
+        updateUI(totalVisits);
+      }
+    })
+    .catch(() => { el.textContent = '—'; });
 })();
 
 // --- Clique no card do projeto para abrir link
