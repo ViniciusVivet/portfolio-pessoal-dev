@@ -506,9 +506,31 @@ if (form) {
   });
 })();
 
-// --- Lazy-load do jogo T-Rex quando a seção entra em viewport
-(function initDinoLazyLoad(){
-  const canvas = document.getElementById('dinoCanvas');
-  if (!canvas) return; /* seção removida */
+// Dino game carregado via assets/js/games/dino.js (seção #diversao no HTML)
+
+// Alternar tema claro/escuro (persiste em localStorage)
+(function initThemeToggle() {
+  const THEME_KEY = "portfolio-theme";
+  const html = document.documentElement;
+  const btn = document.getElementById("theme-toggle");
+  if (!btn) return;
+
+  function setTheme(theme) {
+    html.setAttribute("data-theme", theme);
+    try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
+  }
+
+  function getStoredTheme() {
+    try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
+  }
+
+  const stored = getStoredTheme();
+  if (stored === "light" || stored === "dark") setTheme(stored);
+
+  btn.addEventListener("click", function () {
+    const current = html.getAttribute("data-theme") || "dark";
+    const next = current === "dark" ? "light" : "dark";
+    setTheme(next);
+  });
 })();
 
