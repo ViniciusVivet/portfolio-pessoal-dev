@@ -269,12 +269,22 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Formulário: FormSubmit.co (submit normal) ou API no Render (fetch + feedback)
+// Formulário: FormSubmit primário (free tier). Se action for API (ex.: Render), tenta API com timeout curto e fallback automático para FormSubmit (cold start).
 const form = document.getElementById('contact-form');
 if (form) {
   const statusEl = document.getElementById('form-status');
   const submitBtn = form.querySelector('input[type="submit"]');
   const isFormSubmit = form.action && form.action.includes('formsubmit.co');
+
+  // Fallback FormSubmit (usado quando a API falha ou dorme — ex.: Render free tier)
+  const FALLBACK_FORMSUBMIT_URL = 'https://formsubmit.co/douglasvivet@gmail.com';
+  const FALLBACK_HIDDEN = {
+    _subject: 'Nova mensagem do Portfólio',
+    _template: 'table',
+    _captcha: 'false',
+    _next: 'https://viniciusvivet.github.io/portfolio-pessoal-dev/#contato',
+    _autoresponse: 'Olá! Recebi sua mensagem enviada pelo meu portfólio e retornarei em breve. Obrigado pelo contato!'
+  };
 
   if (!isFormSubmit) {
     const honeypot = document.createElement('input');
@@ -287,7 +297,7 @@ if (form) {
   }
 
   function fetchWithTimeout(resource, options = {}) {
-    const { timeout = 15000 } = options;
+    const { timeout = 5000 } = options; // 5s: evita esperar cold start do Render
     return new Promise((resolve, reject) => {
       const timer = setTimeout(() => reject(new Error('timeout')), timeout);
       fetch(resource, options).then(
@@ -297,18 +307,23 @@ if (form) {
     });
   }
 
-  async function fetchWithRetry(resource, options = {}, retries = 2, backoffMs = 1500) {
-    try {
-      return await fetchWithTimeout(resource, options);
-    } catch (err) {
-      if (retries <= 0) throw err;
-      await new Promise(r => setTimeout(r, backoffMs));
-      return fetchWithRetry(resource, options, retries - 1, backoffMs * 2);
-    }
+  function sendViaFormSubmit() {
+    form.action = FALLBACK_FORMSUBMIT_URL;
+    Object.keys(FALLBACK_HIDDEN).forEach(function (name) {
+      let input = form.querySelector('input[name="' + name + '"]');
+      if (!input) {
+        input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        form.appendChild(input);
+      }
+      input.value = FALLBACK_HIDDEN[name];
+    });
+    form.submit();
   }
 
   form.addEventListener('submit', async (e) => {
-    if (isFormSubmit) return; // deixa o envio normal para FormSubmit.co
+    if (isFormSubmit) return; // FormSubmit primário: envio normal, sem JS
 
     e.preventDefault();
     if (submitBtn) submitBtn.disabled = true;
@@ -328,18 +343,20 @@ if (form) {
 
     try {
       const fd = new FormData(form);
-      const res = await fetchWithRetry(form.action, { method: 'POST', body: fd });
+      const res = await fetchWithTimeout(form.action, { method: 'POST', body: fd });
       if (res.ok) {
         if (statusEl) statusEl.textContent = 'Mensagem enviada com sucesso!';
         if (statusEl) statusEl.classList.add('success');
         form.reset();
       } else {
-        if (statusEl) statusEl.textContent = 'Não foi possível enviar agora. Tente novamente mais tarde.';
-        if (statusEl) statusEl.classList.add('error');
+        if (statusEl) statusEl.textContent = 'Enviando por método alternativo...';
+        sendViaFormSubmit();
+        return;
       }
     } catch (err) {
-      if (statusEl) statusEl.textContent = 'Falha de conexão. Verifique sua internet e tente novamente.';
-      if (statusEl) statusEl.classList.add('error');
+      if (statusEl) statusEl.textContent = 'Enviando por método alternativo...';
+      sendViaFormSubmit();
+      return;
     } finally {
       if (submitBtn) submitBtn.disabled = false;
     }

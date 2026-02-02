@@ -286,6 +286,8 @@ section.is-visible { opacity: 1; transform: translateY(0); }
 .form-status { margin-top: 18px; padding: 12px 14px; border-radius: 10px; font-size: 15px; line-height: 1.4; background: #171717; color: #f0f0f0; border: 1px solid rgba(255,255,255,.12); min-height: 0; }
 .form-status.success { border-color: #00ff99; color: #e9fff6; }
 .form-status.error { border-color: #ff5577; color: #ffe9ee; }
+.form-status .form-fallback-btn { margin-left: 4px; padding: 6px 12px; font-size: 14px; cursor: pointer; background: rgba(255,255,255,.1); color: #00ccff; border: 1px solid rgba(0,204,255,.4); border-radius: 8px; font-weight: 600; }
+.form-status .form-fallback-btn:hover { background: rgba(0,204,255,.15); border-color: #00ccff; }
 .contact-info { margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
 .contact-item { display: flex; align-items: center; gap: 10px; color: #ccc; font-size: 17px; }
 .contact-item i { font-size: 24px; color: #00ff99; }
@@ -581,6 +583,8 @@ html[data-theme="light"] .contact-form textarea {
 html[data-theme="light"] .contact-form input::placeholder,
 html[data-theme="light"] .contact-form textarea::placeholder { color: #718096; }
 html[data-theme="light"] .form-status { background: #f8fafc; border-color: rgba(0, 204, 255, 0.2); color: #2d3748; }
+html[data-theme="light"] .form-status .form-fallback-btn { background: rgba(0, 170, 119, 0.12); color: #007755; border-color: rgba(0, 170, 119, 0.35); }
+html[data-theme="light"] .form-status .form-fallback-btn:hover { background: rgba(0, 170, 119, 0.2); border-color: #00aa77; }
 html[data-theme="light"] .form-rules { color: #4a5568; }
 html[data-theme="light"] .contact-cta {
   background: linear-gradient(135deg, rgba(0,204,255,.1), rgba(0,255,153,.08));

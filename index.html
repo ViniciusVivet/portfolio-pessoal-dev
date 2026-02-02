@@ -2261,11 +2261,13 @@
     </ul>
 
     <div class="contact-form-container">
-        <!-- Formulário: action atual = FormSubmit.co. Para usar sua API no Render, troque o action para a URL (ex: https://seu-app.onrender.com/send-message) -->
-        <form id="contact-form" class="contact-form" action="https://formsubmit.co/douglasvivet@gmail.com" method="POST"> <input type="hidden" name="_subject" value="Nova mensagem do Portfólio">
+        <!-- Free tier: FormSubmit como primário (nunca dorme). Quando tiver API 24/7 (ex.: plano pago Render), troque o action para a URL da API; o JS faz fallback automático para FormSubmit se a API falhar ou demorar. -->
+        <form id="contact-form" class="contact-form" action="https://formsubmit.co/douglasvivet@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nova mensagem do Portfólio">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://ViniciusVivet.github.io/portfolio-pessoal-dev/#contato"> <input type="hidden" name="_autoresponse" value="Olá! Recebi sua mensagem enviada pelo meu portfólio e retornarei em breve. Obrigado pelo contato!">
+            <input type="hidden" name="_next" value="https://viniciusvivet.github.io/portfolio-pessoal-dev/#contato">
+            <input type="hidden" name="_autoresponse" value="Olá! Recebi sua mensagem enviada pelo meu portfólio e retornarei em breve. Obrigado pelo contato!">
             <label for="name" title="Use seu nome real (2–80 caracteres).">Seu Nome:</label>
             <input type="text" id="name" name="name" required minlength="2" maxlength="80" autocomplete="name" title="2–80 caracteres. Letras e espaços; evite números e símbolos.">
 
