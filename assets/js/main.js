@@ -74,11 +74,20 @@ if (typingTextElement) {
 }
 
 // --- JavaScript para o fundo animado (DNA-like) ---
+const PARTICLE_COUNT_MOBILE = Math.round(80 * 0.85 * 0.85);   // ~58
+const PARTICLE_COUNT_DESKTOP = Math.round(150 * 0.85 * 0.85); // ~108
+const PARTICLE_SPEED_MOBILE = 1.0;
+const PARTICLE_SPEED_DESKTOP = 1.2;
+const LINE_DIST_MOBILE = 120;
+const LINE_DIST_DESKTOP = 200;
+const MOUSE_REPULSION_RADIUS = 250;
+const MOUSE_REPULSION_STRENGTH = 12;
+
 const canvas = document.getElementById('dnaCanvas');
 if (canvas) {
   const ctx = canvas.getContext('2d');
   let particles = [];
-  let mouse = { x: null, y: null, radius: 250 };
+  let mouse = { x: null, y: null, radius: MOUSE_REPULSION_RADIUS };
   let isAnimating = false;
 
   const particleStrokeColor = '#00ff99';
@@ -87,10 +96,9 @@ if (canvas) {
 
   function getConfig() {
     const isMobile = window.innerWidth < 768;
-    // Reduz mais 15% (total ~27,25% do original)
-    const baseParticles = isMobile ? Math.round(80 * 0.85 * 0.85) : Math.round(150 * 0.85 * 0.85);
-    const baseSpeed = isMobile ? 1.0 : 1.2;
-    const baseLineDist = isMobile ? 120 : 200;
+    const baseParticles = isMobile ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT_DESKTOP;
+    const baseSpeed = isMobile ? PARTICLE_SPEED_MOBILE : PARTICLE_SPEED_DESKTOP;
+    const baseLineDist = isMobile ? LINE_DIST_MOBILE : LINE_DIST_DESKTOP;
     return {
       numberOfParticles: prefersReducedMotion ? 0 : baseParticles,
       particleSpeedFactor: prefersReducedMotion ? 0 : baseSpeed,
@@ -151,7 +159,7 @@ if (canvas) {
         let forceDirectionX = dxMouse / distanceMouse;
         let forceDirectionY = dyMouse / distanceMouse;
         let force = (mouse.radius - distanceMouse) / mouse.radius;
-        let repulsionStrength = 12;
+        const repulsionStrength = MOUSE_REPULSION_STRENGTH;
         let directionX = forceDirectionX * force * repulsionStrength;
         let directionY = forceDirectionY * force * repulsionStrength;
         p.x -= directionX;
