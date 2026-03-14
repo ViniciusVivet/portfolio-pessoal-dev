@@ -44,7 +44,7 @@
 
   <nav class="navbar">
     <a href="#home" class="logo">Douglas <span style="color: #00ff99;">Dev</span></a>
-    <ul>
+    <ul id="nav-menu">
       <li><a href="#home">Home</a></li>
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#formacao">Formação</a></li>
@@ -55,10 +55,17 @@
       <li><a href="#diversao">Diversão</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
-    <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Alternar tema claro e escuro" title="Alternar tema">
-      <i class="fas fa-sun theme-icon theme-icon-sun" aria-hidden="true"></i>
-      <i class="fas fa-moon theme-icon theme-icon-moon" aria-hidden="true"></i>
-    </button>
+    <div class="navbar-actions">
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Alternar tema claro e escuro" title="Alternar tema">
+        <i class="fas fa-sun theme-icon theme-icon-sun" aria-hidden="true"></i>
+        <i class="fas fa-moon theme-icon theme-icon-moon" aria-hidden="true"></i>
+      </button>
+      <button type="button" id="menu-toggle" class="hamburger" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
   </nav>
 
   <canvas id="dnaCanvas"></canvas>

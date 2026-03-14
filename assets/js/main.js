@@ -533,6 +533,33 @@ if (form) {
 
 // Dino game carregado via assets/js/games/dino.js (seção #diversao no HTML)
 
+// --- Hamburger menu mobile ---
+(function initHamburger() {
+  const btn = document.getElementById('menu-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (!btn || !menu) return;
+
+  function closeMenu() {
+    menu.classList.remove('nav-open');
+    btn.classList.remove('active');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('nav-open');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
+
+  // Fecha ao clicar em qualquer link do menu
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // Fecha ao clicar fora do menu
+  document.addEventListener('click', (e) => {
+    if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu();
+  });
+})();
+
 // Alternar tema claro/escuro (persiste em localStorage)
 (function initThemeToggle() {
   const THEME_KEY = "portfolio-theme";
