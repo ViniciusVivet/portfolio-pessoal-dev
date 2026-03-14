@@ -1,0 +1,52 @@
+  <section id="contato">
+    <div class="section-title-container">
+      <span class="ghost-text">Contact</span>
+      <h2><i class="fas fa-envelope-open-text"></i>Entre em <span style="color: #00ccff;">Contato</span></h2>
+    </div>
+    <p>Se você tem alguma dúvida, proposta de estágio, quer discutir tecnologia ou apenas bater um papo, sinta-se à vontade para me enviar uma mensagem. Responderei o mais breve possível!</p>
+    <ul class="form-rules">
+      <li>Use um e‑mail válido. Sem e‑mail válido, a mensagem não é enviada.</li>
+      <li>Campos obrigatórios: Nome, E‑mail e Mensagem.</li>
+      <li>Ao enviar, você verá o status aqui na página e receberá um e‑mail de confirmação.</li>
+    </ul>
+
+    <div class="contact-form-container">
+      <!-- Free tier: FormSubmit como primário (nunca dorme). Quando tiver API 24/7 (ex.: plano pago Render), troque o action para a URL da API; o JS faz fallback automático para FormSubmit se a API falhar ou demorar. -->
+      <form id="contact-form" class="contact-form" action="https://formsubmit.co/douglasvivet@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Nova mensagem do Portfólio">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://viniciusvivet.github.io/portfolio-pessoal-dev/#contato">
+        <input type="hidden" name="_autoresponse" value="Olá! Recebi sua mensagem enviada pelo meu portfólio e retornarei em breve. Obrigado pelo contato!">
+
+        <label for="name" title="Use seu nome real (2–80 caracteres).">Seu Nome:</label>
+        <input type="text" id="name" name="name" required minlength="2" maxlength="80" autocomplete="name" title="2–80 caracteres. Letras e espaços; evite números e símbolos.">
+
+        <label for="email" title="Digite um e‑mail válido no formato nome@dominio.com.">Seu Email:</label>
+        <input type="email" id="email" name="email" required inputmode="email" autocomplete="email" maxlength="120" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="E‑mail válido; sem espaços. Usaremos este contato para responder.">
+
+        <label for="subject" title="Opcional. Até 120 caracteres. Seja claro e direto.">Assunto:</label>
+        <input type="text" id="subject" name="subject" maxlength="120" title="Opcional; até 120 caracteres.">
+
+        <label for="message" title="Entre 5 e 2000 caracteres. Evite dados sensíveis (senhas, documentos).">Sua Mensagem:</label>
+        <textarea id="message" name="message" required minlength="5" maxlength="2000" title="Detalhe sua mensagem (5–2000 caracteres)."></textarea>
+
+        <div class="form-buttons">
+          <button type="reset" class="btn secondary">Limpar</button>
+          <input type="submit" value="Enviar Mensagem" class="btn">
+        </div>
+      </form>
+      <div id="form-status" class="form-status" aria-live="polite"></div>
+    </div>
+
+    <div class="contact-info">
+      <a class="contact-cta" href="mailto:douglasvivet@gmail.com?subject=Contato%20via%20Portfolio&body=Ol%C3%A1%2C%20meu%20nome%20%C3%A9%3A%0A%0AMensagem%3A" title="Enviar e‑mail">
+        <i class="fas fa-envelope"></i>
+        douglasvivet@gmail.com
+      </a>
+      <a class="contact-cta" href="https://www.linkedin.com/in/vivetsp/" target="_blank" rel="noopener noreferrer" title="Visitar meu LinkedIn">
+        <i class="fab fa-linkedin"></i>
+        LinkedIn/Vivetsp
+      </a>
+    </div>
+  </section>
