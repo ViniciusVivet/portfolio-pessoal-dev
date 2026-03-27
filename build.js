@@ -16,7 +16,6 @@ const ORDER = [
   "_experience.html",
   "_services.html",
   "_contact.html",
-  "_fun.html",
   "_footer.html",
 ];
 
