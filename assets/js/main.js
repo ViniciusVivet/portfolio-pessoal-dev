@@ -22,8 +22,9 @@ document.head.appendChild(ldScript);
 const typingTextElement = document.getElementById('typing-text');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const phrases = [
-  "Desenvolvedor em Formação.",
-  "Developer in Progress."
+  "Desenvolvedor Fullstack.",
+  "Fundador da Orbitamos.",
+  "Instrutor de Programação."
 ];
 
 let phraseIndex = 0;
