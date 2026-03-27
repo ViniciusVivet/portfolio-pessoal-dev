@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Todos os projetos de Douglas Vinicius — desenvolvedor fullstack e fundador da Orbitamos. Sites, plataformas e sistemas construídos com .NET, Next.js, Spring Boot, Docker e mais.">
+  <meta name="author" content="Douglas Vinicius Alves da Silva">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://ViniciusVivet.github.io/portfolio-pessoal-dev/projects/">
+  <meta name="theme-color" content="#0e0e0e">
+
+  <title>Projetos | Douglas Vinicius — Portfólio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="icon" href="../Site/fotos/0r4kw7z6.png" type="image/png">
+  <link rel="apple-touch-icon" href="../Site/fotos/0r4kw7z6.png">
+
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/projects.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+  <nav class="navbar">
+    <a href="../" class="logo">Douglas <span style="color: #00ff99;">Dev</span></a>
+    <ul id="nav-menu">
+      <li><a href="../">Home</a></li>
+      <li><a href="../#sobre">Sobre</a></li>
+      <li><a href="../#habilidades">Habilidades</a></li>
+      <li><a href="." aria-current="page" style="color:#00ff99; border-bottom:2px solid #00ff99;">Projetos</a></li>
+      <li><a href="../#servicos">Serviços</a></li>
+      <li><a href="../#contato">Contato</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Alternar tema claro e escuro" title="Alternar tema">
+        <i class="fas fa-sun theme-icon theme-icon-sun" aria-hidden="true"></i>
+        <i class="fas fa-moon theme-icon theme-icon-moon" aria-hidden="true"></i>
+      </button>
+      <button type="button" id="menu-toggle" class="hamburger" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <canvas id="dnaCanvas"></canvas>
+
+  <main id="main-content" role="main">
+
+    <section class="projects-page-header">
+      <div class="section-title-container">
+        <span class="ghost-text">Projects</span>
+        <h1><i class="fas fa-project-diagram"></i>Meus <span style="color: #00ccff;">Projetos</span></h1>
+      </div>
+      <p class="projects-page-subtitle">Do conceito ao deploy — pessoais, estudos e clientes reais.</p>
+    </section>
+
+    <section class="projects-page-grid-section" aria-label="Lista de projetos">
+      <div class="projects-index-grid">
+
+        <!-- Orbitamos -->
+        <article class="project-index-card featured" id="orbitamos" role="link" tabindex="0" data-href="https://orbitamos.vercel.app" style="cursor:pointer;">
+          <span class="project-index-badge"><i class="fas fa-star" aria-hidden="true"></i> Destaque</span>
+          <div class="project-index-image">
+            <img src="../Site/fotos/captura-orbitamos.png" alt="Orbitamos — agência digital" loading="eager" width="600" height="190">
+          </div>
+          <div class="project-index-body">
+            <span class="project-status em-dev"><i class="fas fa-circle" aria-hidden="true"></i> Em evolução</span>
+            <h2>Orbitamos</h2>
+            <p class="project-type">Agência Digital + Propósito Social</p>
+            <p>Plataforma da agência que fundei — conecta clientes a soluções web (landing pages, sites institucionais e sistemas web/MVPs). Mais de 5 projetos entregues com 100% de satisfação.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Tailwind CSS</span>
+              <span class="tech-tag">Vercel</span>
+            </div>
+            <div class="project-index-actions">
+              <a href="https://orbitamos.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Ver site
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- KitCerto -->
+        <article class="project-index-card featured" id="kitcerto" role="link" tabindex="0" data-href="https://kit-certo.vercel.app" style="cursor:pointer;">
+          <span class="project-index-badge"><i class="fas fa-star" aria-hidden="true"></i> Destaque</span>
+          <div class="project-index-image">
+            <img src="../Site/fotos/captura-kitcerto.png" alt="KitCerto — e-commerce streetwear" loading="eager" width="600" height="190">
+          </div>
+          <div class="project-index-body">
+            <span class="project-status concluido"><i class="fas fa-check-circle" aria-hidden="true"></i> Entregue</span>
+            <h2>KitCerto</h2>
+            <p class="project-type">E-commerce Fullstack — .NET 9 + Next.js</p>
+            <p>Loja de acessórios streetwear premium (correntes, relógios cravejados, brincos). Backend em .NET 9 com CQRS/DDD, autenticação Keycloak e banco MongoDB. Frontend Next.js com catálogo por categorias, filtros de preço, autenticação e programa de vendedores. Infraestrutura via Docker Compose.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">C#</span>
+              <span class="tech-tag">.NET 9</span>
+              <span class="tech-tag">CQRS / DDD</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">Tailwind</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Keycloak</span>
+              <span class="tech-tag">Docker</span>
+            </div>
+            <div class="project-index-actions">
+              <a href="https://kit-certo.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Ver loja
+              </a>
+              <a href="https://github.com/ViniciusVivet/KitCerto" target="_blank" rel="noopener noreferrer" class="btn-github">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Yume Atelier -->
+        <article class="project-index-card featured" id="yume-atelier" role="link" tabindex="0" data-href="https://yume-atelier.vercel.app" style="cursor:pointer;">
+          <span class="project-index-badge"><i class="fas fa-star" aria-hidden="true"></i> Destaque</span>
+          <div class="project-index-image">
+            <img src="../Site/fotos/yume-atelier.jpg" alt="Yume Atelier — catálogo imersivo de moda experimental" loading="lazy" width="600" height="190">
+          </div>
+          <div class="project-index-body">
+            <span class="project-status concluido"><i class="fas fa-check-circle" aria-hidden="true"></i> Concluído</span>
+            <h2>YUME Atelier</h2>
+            <p class="project-type">Catálogo de Moda — Template White-Label</p>
+            <p>Catálogo imersivo com estética cyberpunk para ateliês, marcas de streetwear e moda experimental. Cards 3D, animações Framer Motion, painel admin integrado (sem precisar tocar em código), modo demo automático e fechamento via WhatsApp. Construído como case de vendas white-label para apresentar a clientes de moda, arte e lifestyle.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Next.js 14</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Tailwind CSS</span>
+              <span class="tech-tag">Framer Motion</span>
+              <span class="tech-tag">Supabase</span>
+              <span class="tech-tag">Vercel</span>
+            </div>
+            <div class="project-index-actions">
+              <a href="https://yume-atelier.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Ver demo
+              </a>
+              <a href="https://github.com/ViniciusVivet/yume-atelier" target="_blank" rel="noopener noreferrer" class="btn-github">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sabrina Lashes -->
+        <article class="project-index-card" id="sabrina-lashes" role="link" tabindex="0" data-href="https://salashes-whatsapp-funnel.vercel.app" style="cursor:pointer;">
+          <div class="project-index-image">
+            <img
+              src="https://salashes-whatsapp-funnel.vercel.app/images/og/og-sabrina-lashes.png"
+              alt="Sabrina Lashes — site institucional de estética"
+              loading="lazy" width="600" height="190"
+              style="object-position: top;"
+            >
+          </div>
+          <div class="project-index-body">
+            <span class="project-status concluido"><i class="fas fa-check-circle" aria-hidden="true"></i> Entregue</span>
+            <h2>Sabrina Lashes</h2>
+            <p class="project-type">Site Institucional — Cliente via Orbitamos</p>
+            <p>Site para profissional de cílios e sobrancelhas em São Paulo. A cliente tinha presença dispersa no Instagram sem canal de contato centralizado. Solução: site responsivo com portfólio de serviços, tabela de preços, depoimentos e CTA WhatsApp sempre visível para agendamento direto.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Tailwind CSS</span>
+              <span class="tech-tag">Vercel</span>
+            </div>
+            <div class="project-index-actions">
+              <a href="https://salashes-whatsapp-funnel.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Ver site
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Portfólio Pessoal -->
+        <article class="project-index-card" id="portfolio" role="link" tabindex="0" data-href="https://viniciusvivet.github.io/portfolio-pessoal-dev/" style="cursor:pointer;">
+          <div class="project-index-image">
+            <picture>
+              <source srcset="../Site/fotos/Captura de tela_11-7-2025_3226_127.0.0.1.webp" type="image/webp">
+              <img src="../Site/fotos/Captura de tela_11-7-2025_3226_127.0.0.1.jpeg" alt="Portfólio Pessoal" loading="lazy" width="600" height="190">
+            </picture>
+          </div>
+          <div class="project-index-body">
+            <span class="project-status em-dev"><i class="fas fa-circle" aria-hidden="true"></i> Em evolução</span>
+            <h2>Portfólio Pessoal</h2>
+            <p class="project-type">HTML5 / CSS3 / JavaScript Vanilla</p>
+            <p>Este mesmo portfólio — feito do zero sem frameworks CSS. Single-page com canvas animado, modo claro/escuro, hamburger menu, acessibilidade completa (ARIA, skip-link, prefers-reduced-motion), PWA manifest e sistema de build com partials HTML via Node.js.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Canvas API</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">PWA</span>
+            </div>
+            <div class="project-index-actions">
+              <a href="../" class="btn-demo">
+                <i class="fas fa-eye" aria-hidden="true"></i> Ver site
+              </a>
+              <a href="https://github.com/ViniciusVivet/portfolio-pessoal-dev" target="_blank" rel="noopener noreferrer" class="btn-github">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Board Java -->
+        <article class="project-index-card" id="board-java" role="link" tabindex="0" data-href="https://github.com/ViniciusVivet/MeusExerciciosJava" style="cursor:pointer;">
+          <div class="project-index-image">
+            <picture>
+              <source srcset="../Site/fotos/board-java.webp" type="image/webp">
+              <img src="../Site/fotos/board-java.png" alt="Board de Tarefas em Java" loading="lazy" width="600" height="190">
+            </picture>
+          </div>
+          <div class="project-index-body">
+            <span class="project-status concluido"><i class="fas fa-check-circle" aria-hidden="true"></i> Concluído</span>
+            <h2>Board de Tarefas em Java</h2>
+            <p class="project-type">Exercício de POO</p>
+            <p>Gerenciador de tarefas estilo Trello feito em Java. Aplica Programação Orientada a Objetos — abstração, encapsulamento e herança — no gerenciamento de colunas e cards via console.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">POO</span>
+              <span class="tech-tag">Console App</span>
+            </div>
+            <div class="project-index-actions">
+              <a href="https://github.com/ViniciusVivet/MeusExerciciosJava" target="_blank" rel="noopener noreferrer" class="btn-github">
+                <i class="fab fa-github" aria-hidden="true"></i> Repositório
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="projects-page-cta">
+        <a href="https://github.com/ViniciusVivet?tab=repositories" target="_blank" rel="noopener noreferrer" class="projects-cta">
+          <i class="fab fa-github"></i> Ver todos os repositórios no GitHub
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="projects-page-footer">
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/vivetsp/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/ViniciusVivet" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+    <p class="footer-text">&copy; 2025 Douglas Vinicius Alves da Silva.</p>
+  </footer>
+
+  <button id="scrollToTopBtn" aria-label="Voltar ao topo" title="Voltar ao topo">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="../assets/js/projects.js" defer></script>
+</body>
+</html>
