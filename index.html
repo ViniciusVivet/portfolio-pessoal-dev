@@ -47,12 +47,9 @@
     <ul id="nav-menu">
       <li><a href="#home">Home</a></li>
       <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#formacao">Formação</a></li>
       <li><a href="#habilidades">Habilidades</a></li>
-      <li><a href="#projetos">Projetos</a></li>
-      <li><a href="#experiencia">Experiência</a></li>
+      <li><a href="projects/">Projetos</a></li>
       <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#diversao">Diversão</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
     <div class="navbar-actions">
@@ -84,7 +81,7 @@
     <div class="hero-content-box">
       <p class="welcome-text">Olá, eu sou o</p>
       <h1 class="name-gradient">Douglas Vinicius</h1>
-      <p class="developer-text" id="typing-text">Desenvolvedor em Formação.</p>
+      <p class="developer-text" id="typing-text">Desenvolvedor Fullstack.</p>
       <div class="hero-buttons">
         <a href="#contato" class="btn"><i class="fas fa-envelope"></i> Contato</a>
         <a href="Site/Curriculo-Douglas-Vinicius.pdf" class="btn secondary" target="_blank" rel="noopener noreferrer" type="application/pdf"><i class="fas fa-download"></i> Currículo</a>
@@ -98,14 +95,12 @@
     </div>
     <div class="about-content">
       <div class="about-image">
-        <picture>
-          <source srcset="Site/fotos/foto-perfil.webp" type="image/webp">
-          <img src="Site/fotos/foto-perfil.jpg" alt="Foto de Perfil de Douglas Vinicius" loading="lazy" width="250" height="250" decoding="async">
-        </picture>
+        <img src="Site/fotos/foto-perfil.jpg" alt="Foto de Perfil de Douglas Vinicius" loading="lazy" width="250" height="250" decoding="async">
       </div>
       <div class="about-text">
-        <p>Sou Douglas Vinicius Alves da Silva, estudante de Análise e Desenvolvimento de Sistemas (Estácio) e instrutor de informática desde agosto de 2025, atualmente ministro aulas práticas de programação e tecnologia na faculdade Prepara Cursos IA. Em paralelo, estou em transição sólida para desenvolvimento, com foco em back-end (.NET/C#), arquitetura de sistemas, APIs REST e banco de dados.
-          Nos meus projetos, aplico padrões e ferramentas do mercado como Clean Architecture, CQRS/MediatR, Swagger/OpenAPI, Docker, autenticação/autorização com Keycloak (OIDC/JWT) e bancos de dados como MongoDB e PostgreSQL (Supabase). Com destaque para o KitCerto, um sistema fullstack com painel admin e infraestrutura dockerizada. Busco uma oportunidade como desenvolvedor júnior ou estagiário para ampliar minha atuação com essas práticas em ambiente profissional e crescer junto a um time.</p>
+        <p>Sou Douglas Vinicius Alves da Silva — desenvolvedor fullstack com ênfase em back-end .NET, estudante de Análise e Desenvolvimento de Sistemas na Estácio e fundador da <a href="https://orbitamos.vercel.app" target="_blank" rel="noopener noreferrer">Orbitamos</a>, agência digital com propósito social.</p>
+        <p>Desde agosto de 2025 atuo como Instrutor Técnico de Informática (estágio) na Prepara Cursos, ministrando aulas práticas de programação, Excel Avançado, SQL e desenvolvimento web. Na Orbitamos já entreguei mais de 5 projetos reais para clientes.</p>
+        <p>Nos projetos aplico Clean Architecture, CQRS/MediatR, Docker, Keycloak (OIDC/JWT), Swagger e bancos SQL/NoSQL. Busco uma oportunidade como desenvolvedor júnior para crescer junto a um time e colocar essas práticas em produção em escala.</p>
       </div>
     </div>
   </section>
@@ -119,9 +114,9 @@
       <h3><strong>Análise e Desenvolvimento de Sistemas</strong></h3>
       <p><strong>Estácio de Sá</strong> | Março de 2025 - 2027 (Previsão de Conclusão) | Cursando</p>
       <ul>
-        <li>Atualmente no 2º semestre, com base sólida em lógica de programação e fundamentos de TI.</li>
+        <li>Atualmente no 3º semestre, com base sólida em lógica de programação e fundamentos de TI.</li>
         <li>Foco em desenvolvimento de sistemas e tecnologias web/backend.</li>
-        <li>Preparação para desafios práticos e busca por estágio na área.</li>
+        <li>Aplicando o aprendizado acadêmico em projetos reais e no estágio como Instrutor Técnico.</li>
       </ul>
     </div>
 
@@ -165,24 +160,29 @@
         <div class="skill-item"><i class="fab fa-css3-alt"></i><p>CSS3</p></div>
         <div class="skill-item"><i class="fab fa-js"></i><p>JavaScript</p></div>
         <div class="skill-item"><i class="fas fa-code"></i><p>TypeScript</p></div>
-        <div class="skill-item"><i class="fab fa-java"></i><p>Java (Iniciante)</p></div>
-        <div class="skill-item"><i class="fab fa-python"></i><p>Python (Básico)</p></div>
         <div class="skill-item"><i class="fab fa-microsoft"></i><p>C# / .NET</p></div>
         <div class="skill-item"><i class="fab fa-react"></i><p>React</p></div>
         <div class="skill-item"><i class="fas fa-bolt"></i><p>Next.js</p></div>
-        <div class="skill-item"><i class="fas fa-cogs"></i><p>Lógica de Programação (C)</p></div>
+        <div class="skill-item"><i class="fab fa-java"></i><p>Java</p></div>
+        <div class="skill-item"><i class="fab fa-python"></i><p>Python</p></div>
+        <div class="skill-item"><i class="fas fa-wind"></i><p>Framer Motion</p></div>
+        <div class="skill-item"><i class="fas fa-server"></i><p>Spring Boot</p></div>
+        <div class="skill-item"><i class="fas fa-cogs"></i><p>C</p></div>
       </div>
     </div>
 
     <div class="skills-category">
       <h3>Banco &amp; Infra</h3>
       <div class="skills-grid">
-        <div class="skill-item"><i class="fas fa-database"></i><p>Banco de Dados (SQL)</p></div>
-        <div class="skill-item"><i class="fab fa-docker"></i><p>Docker</p></div>
+        <div class="skill-item"><i class="fas fa-database"></i><p>SQL</p></div>
+        <div class="skill-item"><i class="fas fa-database"></i><p>PostgreSQL</p></div>
         <div class="skill-item"><i class="fas fa-leaf"></i><p>MongoDB</p></div>
-        <div class="skill-item"><i class="fas fa-envelopes-bulk"></i><p>RabbitMQ</p></div>
-        <div class="skill-item"><i class="fas fa-terminal"></i><p>Linha de Comando (CLI)</p></div>
+        <div class="skill-item"><i class="fab fa-docker"></i><p>Docker</p></div>
         <div class="skill-item"><i class="fas fa-layer-group"></i><p>Supabase</p></div>
+        <div class="skill-item"><i class="fas fa-cloud"></i><p>Vercel</p></div>
+        <div class="skill-item"><i class="fab fa-aws"></i><p>AWS (EC2)</p></div>
+        <div class="skill-item"><i class="fas fa-envelopes-bulk"></i><p>RabbitMQ</p></div>
+        <div class="skill-item"><i class="fas fa-terminal"></i><p>CLI</p></div>
       </div>
     </div>
 
@@ -192,7 +192,7 @@
         <div class="skill-item"><i class="fab fa-git-alt"></i><p>Git</p></div>
         <div class="skill-item"><i class="fab fa-github"></i><p>GitHub</p></div>
         <div class="skill-item"><i class="fas fa-user-shield"></i><p>Keycloak</p></div>
-        <div class="skill-item"><i class="fas fa-book"></i><p>Swagger / APIs REST</p></div>
+        <div class="skill-item"><i class="fas fa-book"></i><p>Swagger / REST</p></div>
         <div class="skill-item"><i class="fas fa-cloud"></i><p>Render</p></div>
       </div>
     </div>
@@ -200,157 +200,96 @@
     <div class="skills-category">
       <h3>Conceitos</h3>
       <div class="skills-grid">
-        <div class="skill-item"><i class="fas fa-diagram-project"></i><p>Arquitetura Limpa (CQRS/DDD)</p></div>
-        <div class="skill-item"><i class="fas fa-chalkboard-teacher"></i><p>Resolução de Problemas</p></div>
-        <div class="skill-item"><i class="fas fa-lightbulb"></i><p>Criatividade</p></div>
+        <div class="skill-item"><i class="fas fa-diagram-project"></i><p>Clean Architecture</p></div>
+        <div class="skill-item"><i class="fas fa-diagram-project"></i><p>CQRS / DDD</p></div>
+        <div class="skill-item"><i class="fas fa-vial"></i><p>TDD / Testes</p></div>
+        <div class="skill-item"><i class="fas fa-users"></i><p>Scrum</p></div>
+        <div class="skill-item"><i class="fas fa-lightbulb"></i><p>Resolução de Problemas</p></div>
       </div>
     </div>
   </section>
-  <section id="projetos">
-    <div class="section-title-container">
-      <span class="ghost-text">Projects</span>
-      <h2><i class="fas fa-project-diagram"></i>Meus <span style="color: #00ccff;">Projetos</span></h2>
+<section id="projetos">
+  <div class="section-title-container">
+    <span class="ghost-text">Projects</span>
+    <h2><i class="fas fa-project-diagram"></i>Meus <span style="color: #00ccff;">Projetos</span></h2>
+  </div>
+  <div class="projects-grid">
+
+    <!-- Orbitamos -->
+    <div class="project-card clickable-card" data-link="https://orbitamos.vercel.app">
+      <div class="project-image">
+        <img src="Site/fotos/captura-orbitamos.png" alt="Orbitamos - Agência digital" loading="lazy" width="300" height="180">
+      </div>
+      <div class="project-content">
+        <h3>Orbitamos <span class="subtitle">(Agência Digital + Propósito Social)</span></h3>
+        <p>Plataforma da agência que fundei — conecta clientes a soluções web: landing pages, sites institucionais e sistemas web/MVPs. Mais de 5 projetos entregues.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Next.js</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Tailwind</span>
+          <span class="tech-tag">Vercel</span>
+        </div>
+        <div class="project-links">
+          <a href="https://orbitamos.vercel.app" target="_blank" rel="noopener noreferrer">Ver site <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
     </div>
-    <div class="projects-grid">
 
-      <!-- KitCerto -->
-      <div class="project-card clickable-card" data-link="https://github.com/ViniciusVivet/KitCerto">
-        <div class="project-image">
-          <picture>
-            <source srcset="Site/fotos/kitcerto.webp" type="image/webp">
-            <img src="Site/fotos/kitcerto.png" alt="KitCerto - tela do sistema" loading="lazy" width="300" height="180">
-          </picture>
+    <!-- KitCerto -->
+    <div class="project-card clickable-card" data-link="https://kit-certo.vercel.app">
+      <div class="project-image">
+        <img src="Site/fotos/captura-kitcerto.png" alt="KitCerto - E-commerce streetwear" loading="lazy" width="300" height="180">
+      </div>
+      <div class="project-content">
+        <h3>KitCerto <span class="subtitle">(E-commerce Fullstack — Entregue)</span></h3>
+        <p>Loja de acessórios streetwear premium (correntes, relógios, brincos). Backend em .NET 9 com CQRS/DDD, Keycloak e MongoDB. Frontend Next.js com catálogo, filtros e autenticação — em produção.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">C#</span>
+          <span class="tech-tag">.NET 9</span>
+          <span class="tech-tag">Next.js</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">MongoDB</span>
         </div>
-        <div class="project-content">
-          <h3>KitCerto <span class="subtitle">(Fullstack .NET + Next.js)</span></h3>
-          <p>Sistema completo de e-commerce/gestão de produtos. Backend em .NET 9 com CQRS/DDD e autenticação Keycloak, frontend em Next.js com Tailwind, banco MongoDB e infraestrutura Docker Compose (dev/prod).</p>
-          <div class="tech-tags">
-            <span class="tech-tag">C#</span>
-            <span class="tech-tag">.NET 9</span>
-            <span class="tech-tag">TypeScript</span>
-            <span class="tech-tag">Next.js</span>
-            <span class="tech-tag">Docker</span>
-            <span class="tech-tag">Keycloak</span>
-            <span class="tech-tag">MongoDB</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/ViniciusVivet/KitCerto" target="_blank" rel="noopener noreferrer">Repositório <i class="fab fa-github"></i></a>
-          </div>
+        <div class="project-links">
+          <a href="https://kit-certo.vercel.app" target="_blank" rel="noopener noreferrer">Ver loja <i class="fas fa-external-link-alt"></i></a>
+          <a href="https://github.com/ViniciusVivet/KitCerto" target="_blank" rel="noopener noreferrer">GitHub <i class="fab fa-github"></i></a>
         </div>
       </div>
-
-      <!-- Orbitamos -->
-      <div class="project-card clickable-card" data-link="https://orbitamos-ljsglwhqw-viniciusvivets-projects.vercel.app">
-        <div class="project-image">
-          <picture>
-            <source srcset="Site/fotos/orbitamos.webp" type="image/webp">
-            <img src="Site/fotos/orbitamos.png" alt="Orbitamos - Portal gamificado" loading="lazy" width="300" height="180">
-          </picture>
-        </div>
-        <div class="project-content">
-          <h3>Orbitamos <span class="subtitle">(Plataforma Gamificada)</span></h3>
-          <p>Plataforma web gamificada para educação prática e transição de carreira em tecnologia, com foco em trilhas, progresso e uma experiência simples de usar. Front em Next.js + TypeScript, com base para API REST (Spring Boot) e persistência em PostgreSQL (Supabase).</p>
-          <div class="tech-tags">
-            <span class="tech-tag">TypeScript</span>
-            <span class="tech-tag">Next.js</span>
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">Tailwind</span>
-            <span class="tech-tag">Spring Boot</span>
-            <span class="tech-tag">API REST</span>
-            <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">Supabase</span>
-            <span class="tech-tag">Vercel</span>
-          </div>
-          <div class="project-links">
-            <a href="https://orbitamos-ljsglwhqw-viniciusvivets-projects.vercel.app" target="_blank" rel="noopener noreferrer">Ver projeto <i class="fas fa-external-link-alt"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Board Java POO -->
-      <div class="project-card clickable-card" data-link="https://github.com/ViniciusVivet/MeusExerciciosJava">
-        <div class="project-image">
-          <picture>
-            <source srcset="Site/fotos/board-java.webp" type="image/webp">
-            <img src="Site/fotos/board-java.png" alt="Board de Tarefas em Java (POO)" loading="lazy" width="300" height="180">
-          </picture>
-        </div>
-        <div class="project-content">
-          <h3>Board de Tarefas em Java (POO)</h3>
-          <p>Projeto em Java simulando um Trello, com classes e objetos para gerenciar tarefas. Exercício prático para consolidar Programação Orientada a Objetos (abstração, encapsulamento, herança).</p>
-          <div class="tech-tags">
-            <span class="tech-tag">Java</span>
-            <span class="tech-tag">POO</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/ViniciusVivet/MeusExerciciosJava" target="_blank" rel="noopener noreferrer">Repositório <i class="fab fa-github"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Portfólio HTML/CSS/JS -->
-      <div class="project-card">
-        <div class="project-image">
-          <picture>
-            <source srcset="Site/fotos/Captura de tela_11-7-2025_3226_127.0.0.1.webp" type="image/webp">
-            <img src="Site/fotos/Captura de tela_11-7-2025_3226_127.0.0.1.jpeg" alt="Imagem da Página Pessoal" loading="lazy" width="300" height="180">
-          </picture>
-        </div>
-        <div class="project-content">
-          <h3>Página Pessoal HTML/CSS/JS</h3>
-          <p>Este próprio portfólio online, desenvolvido para demonstrar habilidades em HTML5, CSS3 e design responsivo e estruturação de projetos web.</p>
-          <div class="tech-tags">
-            <span class="tech-tag">HTML5</span>
-            <span class="tech-tag">CSS3</span>
-            <span class="tech-tag">Design Responsivo</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/ViniciusVivet/portfolio-pessoal-dev" target="_blank" rel="noopener noreferrer">Repositório <i class="fab fa-github"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Desafio Super Trunfo em C -->
-      <div class="project-card">
-        <div class="project-image">
-          <picture>
-            <source srcset="Site/fotos/0r4kw7z6.webp" type="image/webp">
-            <img src="Site/fotos/0r4kw7z6.png" alt="Imagem do Projeto C" loading="lazy" width="300" height="180">
-          </picture>
-        </div>
-        <div class="project-content">
-          <h3>Desafio Super Trunfo em C | Estácio</h3>
-          <p>Este projeto implementa uma versão avançada do clássico jogo Super Trunfo em C. Ele simula batalhas entre cartas com dados de cidades brasileiras, demonstrando minha aplicação de lógica complexa, manipulação de dados e interação via console</p>
-          <div class="tech-tags">
-            <span class="tech-tag">C</span>
-            <span class="tech-tag">Lógica de Programação</span>
-            <span class="tech-tag">Algoritmo</span>
-            <span class="tech-tag">Console App</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/ViniciusVivet/SuperTrunfoC" target="_blank" rel="noopener noreferrer">Repositório <i class="fab fa-github"></i></a>
-          </div>
-        </div>
-      </div>
-
     </div>
-    <a href="https://github.com/ViniciusVivet?tab=repositories" class="projects-cta" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Ver todos os projetos no GitHub</a>
-  </section>
+
+  </div>
+
+  <div style="display:flex; justify-content:center; margin-top:24px;">
+    <a href="projects/" class="projects-cta"><i class="fas fa-th-large"></i> Ver todos os projetos</a>
+  </div>
+</section>
   <section id="experiencia">
     <div class="section-title-container">
       <span class="ghost-text">Experience</span>
       <h2><i class="fas fa-briefcase"></i>Minha <span style="color: #00ccff;">Experiência</span></h2>
     </div>
+
     <div class="box experience-item">
-      <h3>Estudante / Desenvolvedor em Formação</h3>
-      <span>Estácio de Sá | Março de 2025 - Presente</span>
+      <h3>Instrutor Técnico de Informática <span style="color:#00ff99; font-size:14px; font-weight:600; margin-left:8px;">Estágio</span></h3>
+      <span><i class="fas fa-building" style="margin-right:6px; color:#00ccff;"></i>Prepara Cursos &nbsp;|&nbsp; Ago 2025 — Atual</span>
       <ul>
-        <li>Aplicação prática de lógica de programação em projetos acadêmicos e pessoais utilizando C, Python e Java.</li>
-        <li>Desenvolvimento de interfaces básicas com HTML e CSS, focando em usabilidade e design responsivo.</li>
-        <li>Colaboração em projetos em grupo, aprimorando habilidades de comunicação e trabalho em equipe.</li>
-        <li>Exploração de conceitos de controle de versão utilizando Git e GitHub para gerenciamento de código.</li>
+        <li>Ministro aulas práticas de Excel Avançado, lógica de programação, HTML/CSS/JavaScript, C# e Python.</li>
+        <li>Apoio em SQL e análise de dados — queries, manipulação e visualização com Power BI.</li>
+        <li>Orientação de projetos de Arduino/robótica e desenvolvimento web, incentivando boas práticas desde o início.</li>
+        <li>Resolução de problemas técnicos em tempo real em sala de aula com alunos de diferentes níveis.</li>
       </ul>
     </div>
+
+    <div class="box experience-item">
+      <h3>Fundador &amp; Desenvolvedor <span style="color:#00ccff; font-size:14px; font-weight:600; margin-left:8px;">Freelance</span></h3>
+      <span><i class="fas fa-rocket" style="margin-right:6px; color:#00ccff;"></i>Orbitamos &nbsp;|&nbsp; 2025 — Atual</span>
+      <ul>
+        <li>Fundei e desenvolvi a plataforma da agência — landing pages, sites institucionais e sistemas web/MVP para clientes.</li>
+        <li>Mais de 5 projetos entregues com 100% de satisfação.</li>
+        <li>Atuação completa: briefing, design, desenvolvimento fullstack (Next.js + TypeScript) e deploy via Vercel.</li>
+      </ul>
+    </div>
+
   </section>
   <section id="servicos">
     <div class="section-title-container">
@@ -359,6 +298,11 @@
     </div>
     <div class="services-grid">
       <div class="box service-item">
+        <i class="fas fa-globe"></i>
+        <h3>Sites &amp; Landing Pages</h3>
+        <p>Sites institucionais, portfólios e landing pages responsivas focadas em conversão. Do design ao deploy — entrego em produção via Vercel em poucos dias.</p>
+      </div>
+      <div class="box service-item">
         <i class="fas fa-layer-group"></i>
         <h3>Desenvolvimento Web Fullstack</h3>
         <p>Aplicações completas com .NET no backend e Next.js/React no frontend, APIs REST, autenticação Keycloak e bancos MongoDB/SQL.</p>
@@ -366,17 +310,17 @@
       <div class="box service-item">
         <i class="fas fa-diagram-project"></i>
         <h3>Arquitetura &amp; Boas Práticas</h3>
-        <p>Clean Architecture, CQRS e DDD; uso de padrões de projeto para construir sistemas escaláveis, organizados e de fácil evolução.</p>
+        <p>Clean Architecture, CQRS e DDD — sistemas escaláveis, organizados e fáceis de evoluir, com Swagger e testes desde o início.</p>
       </div>
       <div class="box service-item">
         <i class="fas fa-database"></i>
         <h3>Bancos de Dados &amp; Integrações</h3>
-        <p>Experiência com MongoDB e SQL Server: queries, modelagem, seeds e integrações entre serviços em ambientes dockerizados.</p>
+        <p>MongoDB, PostgreSQL e SQL Server: modelagem, queries e integração entre serviços em ambientes dockerizados.</p>
       </div>
       <div class="box service-item">
         <i class="fab fa-docker"></i>
         <h3>Infraestrutura &amp; DevOps</h3>
-        <p>Docker Compose (dev/prod), Nginx como reverse proxy e integração de serviços (Keycloak, RabbitMQ, API e frontend).</p>
+        <p>Docker Compose (dev/prod), Nginx como reverse proxy e orquestração de serviços como Keycloak e RabbitMQ.</p>
       </div>
     </div>
   </section>
@@ -432,20 +376,6 @@
       </a>
     </div>
   </section>
-  <section id="diversao" aria-labelledby="title-diversao">
-    <div class="section-title-container">
-      <span class="ghost-text">Fun</span>
-      <h2 id="title-diversao"><i class="fas fa-gamepad"></i> Um <span style="color: #00ccff;">Minigame</span></h2>
-    </div>
-    <p class="dino-hint">Pressione <kbd>Espaço</kbd> para pular, <kbd>P</kbd> pausar, <kbd>R</kbd> reiniciar.</p>
-    <div class="dino-wrapper">
-      <div class="dino-scores">
-        <span>Pontuação: <strong id="dinoScore">0</strong></span>
-        <span>Recorde: <strong id="dinoBest">0</strong></span>
-      </div>
-      <canvas id="dinoCanvas" width="600" height="150" aria-label="Minijogo do dinossauro, pule os obstáculos"></canvas>
-    </div>
-  </section>
   </main>
 
   <footer>
@@ -466,6 +396,5 @@
   <button id="scrollToTopBtn" title="Voltar ao Topo"><i class="fas fa-arrow-up"></i></button>
 
   <script src="assets/js/main.js" defer></script>
-  <script src="assets/js/games/dino.js" defer></script>
 </body>
 </html>
