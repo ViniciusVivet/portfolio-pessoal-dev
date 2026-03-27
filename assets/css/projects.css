@@ -238,6 +238,14 @@
   margin-top: 0;
 }
 
+/* ---- Mobile feel premium (projects page) ---- */
+.project-index-card, .project-index-actions .btn-github, .project-index-actions .btn-demo {
+  touch-action: manipulation;
+}
+.project-index-card:active { transform: scale(0.98); }
+.project-index-actions .btn-github:active,
+.project-index-actions .btn-demo:active { transform: scale(0.95); opacity: 0.85; }
+
 /* ---- Responsive ---- */
 @media (max-width: 768px) {
   .projects-page-header {
