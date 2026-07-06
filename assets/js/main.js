@@ -5,7 +5,7 @@ const personLdJson = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Douglas Vinicius Alves da Silva",
-  "jobTitle": "Desenvolvedor em Formação",
+  "jobTitle": "Desenvolvedor Back-End .NET",
   "url": "https://ViniciusVivet.github.io/portfolio-pessoal-dev/",
   "email": "mailto:douglasvivet@gmail.com",
   "sameAs": [
@@ -22,7 +22,8 @@ document.head.appendChild(ldScript);
 const typingTextElement = document.getElementById('typing-text');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const phrases = [
-  "Desenvolvedor Fullstack.",
+  "Desenvolvedor Back-End .NET.",
+  "C# | APIs REST | Clean Architecture.",
   "Fundador da Orbitamos.",
   "Instrutor de Programação."
 ];
@@ -169,22 +170,54 @@ if (canvas) {
     }
   }
 
-  function drawLines() {
+  // Spatial grid para evitar O(n²) bruto no drawLines
+  let grid = {};
+  let cellSize = lineDistance || 200;
+
+  function buildGrid() {
+    grid = {};
     for (let i = 0; i < particles.length; i++) {
-      for (let j = i; j < particles.length; j++) {
-        let p1 = particles[i];
-        let p2 = particles[j];
-        let dx = p1.x - p2.x;
-        let dy = p1.y - p2.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < lineDistance) {
-          let opacity = 1 - (distance / lineDistance);
-          ctx.strokeStyle = `rgba(${lineColorBase}, ${opacity})`;
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
+      const p = particles[i];
+      const cx = Math.floor(p.x / cellSize);
+      const cy = Math.floor(p.y / cellSize);
+      const key = cx + ',' + cy;
+      if (!grid[key]) grid[key] = [];
+      grid[key].push(i);
+    }
+  }
+
+  function drawLines() {
+    cellSize = lineDistance || 200;
+    buildGrid();
+    const checked = new Set();
+    for (let i = 0; i < particles.length; i++) {
+      const p1 = particles[i];
+      const cx = Math.floor(p1.x / cellSize);
+      const cy = Math.floor(p1.y / cellSize);
+      for (let dx = -1; dx <= 1; dx++) {
+        for (let dy = -1; dy <= 1; dy++) {
+          const neighbors = grid[(cx + dx) + ',' + (cy + dy)];
+          if (!neighbors) continue;
+          for (let k = 0; k < neighbors.length; k++) {
+            const j = neighbors[k];
+            if (j <= i) continue;
+            const pairKey = i * particles.length + j;
+            if (checked.has(pairKey)) continue;
+            checked.add(pairKey);
+            const p2 = particles[j];
+            const ddx = p1.x - p2.x;
+            const ddy = p1.y - p2.y;
+            const distance = Math.sqrt(ddx * ddx + ddy * ddy);
+            if (distance < lineDistance) {
+              const opacity = 1 - (distance / lineDistance);
+              ctx.strokeStyle = `rgba(${lineColorBase}, ${opacity})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+            }
+          }
         }
       }
     }
@@ -559,6 +592,12 @@ if (form) {
   document.addEventListener('click', (e) => {
     if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu();
   });
+})();
+
+// Ano dinâmico no footer
+(function updateFooterYear() {
+  const el = document.getElementById('footer-year');
+  if (el) el.textContent = new Date().getFullYear();
 })();
 
 // Alternar tema claro/escuro (persiste em localStorage)
