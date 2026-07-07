@@ -416,7 +416,7 @@ if (form) {
   const progressBar = document.getElementById('cd-progress-bar');
   if (!daysEl || !hmsEl) return;
   const target = new Date('2027-06-30T23:59:59-03:00'); // 30/06/2027 23:59 (BRT)
-  const start  = new Date('2025-03-01T00:00:00-03:00'); // início do curso (aprox.)
+  const start  = new Date('2025-01-01T00:00:00-03:00'); // início do curso (Jan 2025)
   function update() {
     const now = new Date();
     const diffMs = target - now;
